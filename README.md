@@ -8,6 +8,6 @@
 
 * Firebase Realtimedatabase
 
-* 그 외의 것들- i18n
+* 그 외의 것들- i18n,CI Test
 
 * 부족한 코드 보고 많은 조언 부탁드립니다.
