@@ -1,4 +1,14 @@
 <resources>
     <string name="app_name">App_Movie</string>
     <string name="string_home">홈</string>
+    <string name="string_login">이메일로 로그인</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="string_login_first">모든 작품 무제한 감상,\n무료체험 시작하기</string>
+    <string name="string_login_second">PC, 태블릿,폰,\n맥,Google 캐스트,TV,\n어디서나 최고의 화질로.</string>
+    <string name="string_login_third">4억개의\n평가 데이터 기반,\n세계 최고의 추천엔진</string>
+    <string name="string_login_first_sub">무료 가입 후\n충분히 둘러보고 결정하세요</string>
+    <string name="string_login_second_sub">누워서든 서서든 앉아서든,\n언제 어디서든</string>
+    <string name="string_login_third_sub">취향에 안 맞는 작품에\n2시간을 낭비할 순 없으니까.</string>
 </resources>
