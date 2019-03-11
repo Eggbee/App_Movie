@@ -11,4 +11,9 @@
     <string name="string_login_first_sub">무료 가입 후\n충분히 둘러보고 결정하세요</string>
     <string name="string_login_second_sub">누워서든 서서든 앉아서든,\n언제 어디서든</string>
     <string name="string_login_third_sub">취향에 안 맞는 작품에\n2시간을 낭비할 순 없으니까.</string>
+    <string name="string_signin">가입</string>
+    <string name="string_signin_text">왓챠 서비스 이용약관, 왓챠플레이 서비스 이용약관,\n개인정보 취급 방침에 동의합니다.</string>
+    <string name="string_signin_name">홍길동</string>
+    <string name="string_signin_email">이메일 (example@gmail.com)</string>
+    <string name="string_signin_password">비밀번호 (6자 이상)</string>
 </resources>
