@@ -12,6 +12,7 @@ import kotlin.concurrent.thread
 class LoginActivity : AppCompatActivity(), LoginNavigator {
     override fun intentMain() {
         startActivity(Intent(this, SignInActivity::class.java))
+        finish()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

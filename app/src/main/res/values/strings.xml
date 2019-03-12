@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">App_Movie</string>
+    <string name="app_name">엇챠플레이</string>
     <string name="string_home">홈</string>
     <string name="string_login">이메일로 로그인</string>
 
@@ -16,4 +16,5 @@
     <string name="string_signin_name">홍길동</string>
     <string name="string_signin_email">이메일 (example@gmail.com)</string>
     <string name="string_signin_password">비밀번호 (6자 이상)</string>
+    <string name="stirng_signin">회원가입</string>
 </resources>

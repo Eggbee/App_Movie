@@ -6,9 +6,7 @@
         tools:context=".SignInActivity">
 
     <data>
-
         <import type="android.view.View"/>
-
         <variable
                 name="sign"
                 type="com.example.app_movie.SigninViewModel"/>
@@ -159,7 +157,8 @@
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintVertical_bias="0.015"
                 android:background="@drawable/back_signin_button"
-                android:text="회원가입"
-                android:textColor="@color/signin_edit_text"/>
+                android:text="@string/stirng_signin"
+                android:textColor="@color/signin_edit_text"
+                android:onClick="@{(view)->sign.touch_main(view)}"/>
     </android.support.constraint.ConstraintLayout>
 </layout>

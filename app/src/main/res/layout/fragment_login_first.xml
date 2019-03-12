@@ -6,9 +6,11 @@
         android:layout_height="match_parent">
 
     <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:src="@drawable/back_login_first"/>
+            android:src="@drawable/back_login_first"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
 
     <View
             android:layout_width="match_parent"
