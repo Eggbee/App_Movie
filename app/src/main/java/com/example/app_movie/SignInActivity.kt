@@ -8,10 +8,6 @@ import com.example.app_movie.databinding.ActivityLoginBinding
 import com.example.app_movie.databinding.ActivitySignInBinding
 
 class SignInActivity : AppCompatActivity(),SigninNavigator {
-    override fun intentMain() {
-        startActivity(Intent(this, MainActivity::class.java))
-        finish()
-    }
 
     override fun intentLogin() {
         startActivity(Intent(this, LoginActivity::class.java))

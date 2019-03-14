@@ -7,7 +7,4 @@ class SigninViewModel(val signinNavigator: SigninNavigator): ViewModel() {
     fun touch(view: View){
         signinNavigator.intentLogin()
     }
-    fun touch_main(view:View){
-        signinNavigator.intentMain()
-    }
 }

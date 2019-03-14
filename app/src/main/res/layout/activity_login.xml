@@ -33,6 +33,17 @@
                 app:layout_constraintStart_toStartOf="parent"
                 android:layout_marginStart="24dp"/>
 
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/string_login_goto_signin"
+                android:textColor="@android:color/white"
+                android:layout_marginBottom="12dp"
+                app:layout_constraintBottom_toTopOf="@+id/button"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginEnd="24dp"
+                android:onClick="@{(view)->login.touch_login(view)}"/>
+
         <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -44,7 +55,8 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintVertical_bias="0.926"
                 android:text="@string/string_login"
-                android:onClick="@{(view)->login.touch(view)}"/>
+                android:onClick="@{(view)->login.touch(view)}"
+                android:id="@+id/button"/>
 
     </android.support.constraint.ConstraintLayout>
 </layout>

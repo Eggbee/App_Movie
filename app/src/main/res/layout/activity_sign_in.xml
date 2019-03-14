@@ -159,6 +159,6 @@
                 android:background="@drawable/back_signin_button"
                 android:text="@string/stirng_signin"
                 android:textColor="@color/signin_edit_text"
-                android:onClick="@{(view)->sign.touch_main(view)}"/>
+                android:onClick="@{(view)->sign.touch(view)}"/>
     </android.support.constraint.ConstraintLayout>
 </layout>

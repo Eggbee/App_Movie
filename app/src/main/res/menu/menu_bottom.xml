@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+            android:id="@+id/action_one"
+            app:showAsAction="withText"
+            android:enabled="true"
+            android:icon="@android:drawable/ic_dialog_info"
+            android:title="1번" />
+    <item
+            android:id="@+id/action_two"
+            app:showAsAction="withText"
+            android:icon="@android:drawable/ic_dialog_info"
+            android:title="2번" />
+    <item
+            android:id="@+id/action_three"
+            app:showAsAction="withText"
+            android:enabled="true"
+            android:icon="@android:drawable/ic_dialog_info"
+            android:title="3번" />
+    <item
+            android:id="@+id/action_four"
+            app:showAsAction="withText"
+            android:enabled="true"
+            android:icon="@android:drawable/ic_dialog_info"
+            android:title="4번" />
+</menu>

@@ -11,6 +11,11 @@ import kotlin.concurrent.thread
 
 class LoginActivity : AppCompatActivity(), LoginNavigator {
     override fun intentMain() {
+        startActivity(Intent(this, SignActivity::class.java))
+        finish()
+    }
+
+    override fun intentSignin() {
         startActivity(Intent(this, SignInActivity::class.java))
         finish()
     }
