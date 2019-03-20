@@ -126,7 +126,8 @@
                 app:layout_constraintStart_toStartOf="parent"
                 android:textSize="13sp"
                 android:id="@+id/textView2"
-                android:layout_marginStart="16dp"/>
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"/>
 
         <android.support.v7.widget.AppCompatCheckBox
                 android:layout_width="wrap_content"
@@ -159,6 +160,6 @@
                 android:background="@drawable/back_signin_button"
                 android:text="@string/stirng_signin"
                 android:textColor="@color/signin_edit_text"
-                android:onClick="@{(view)->sign.touch(view)}"/>
+                android:onClick="@{(view)->sign.touch_main(view)}"/>
     </android.support.constraint.ConstraintLayout>
 </layout>

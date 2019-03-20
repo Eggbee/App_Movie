@@ -8,6 +8,6 @@ class LoginViewModel(val loginNavigator: LoginNavigator): ViewModel() {
         loginNavigator.intentMain()
     }
     fun touch(view:View){
-        loginNavigator.intentMain()
+        loginNavigator.intentSignin()
     }
 }

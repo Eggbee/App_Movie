@@ -42,4 +42,7 @@ dependencies {
     implementation 'com.google.android.exoplayer:exoplayer-core:2.8.1'
     implementation 'com.google.android.exoplayer:exoplayer-ui:2.8.1'
     implementation 'com.google.android.exoplayer:extension-ima:2.8.1'
+    //firebase
+    implementation 'com.google.firebase:firebase-core:16.0.8'
 }
+apply plugin: 'com.google.gms.google-services'

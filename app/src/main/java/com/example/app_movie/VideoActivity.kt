@@ -11,6 +11,9 @@ import com.google.android.exoplayer2.trackselection.DefaultTrackSelector
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory
 import com.google.android.exoplayer2.util.Util
 import kotlinx.android.synthetic.main.activity_video.*
+import android.content.pm.ActivityInfo
+
+
 
 class VideoActivity : AppCompatActivity() {
 
@@ -19,6 +22,7 @@ class VideoActivity : AppCompatActivity() {
     private lateinit var adsLoader: ImaAdsLoader
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_video)
 
@@ -45,12 +49,14 @@ class VideoActivity : AppCompatActivity() {
 
     }
 
+    override fun onRestart() {
+        super.onRestart()
+        player?.release()
+    }
+
     override fun onStop() {
         super.onStop()
-
-        playerView.player = null
         player?.release()
-        player = null
     }
 
     override fun onDestroy() {
