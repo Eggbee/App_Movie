@@ -80,7 +80,7 @@
 
         <EditText
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
+                android:layout_height="56dp"
                 app:layout_constraintHeight_percent="0.07"
                 android:layout_marginBottom="8dp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -93,6 +93,7 @@
                 android:textSize="15sp"
                 android:textColor="@color/signin_edit_text"
                 android:background="@drawable/back_signin"
+                android:text="@={sign.email}"
                 android:id="@+id/edit_email"/>
 
         <EditText
@@ -111,6 +112,7 @@
                 android:padding="8dp"
                 app:layout_constraintVertical_bias="0.0"
                 android:textColor="@color/signin_edit_text"
+                android:text="@={sign.password}"
                 android:id="@+id/edit_password"/>
 
         <TextView

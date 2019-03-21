@@ -10,6 +10,11 @@ import java.lang.Exception
 import kotlin.concurrent.thread
 
 class LoginActivity : AppCompatActivity(), LoginNavigator {
+    override fun intentSign() {
+        startActivity(Intent(this, SignActivity::class.java))
+        finish()
+    }
+
     override fun intentMain() {
         startActivity(Intent(this, SignInActivity::class.java))
         finish()
