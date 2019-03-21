@@ -6,7 +6,7 @@
 
 * Design Pattern- MVVM
 
-* Firebase Realtimedatabase
+* Firebase Realtimedatabase,Auth
 
 * Exoplayer
 
