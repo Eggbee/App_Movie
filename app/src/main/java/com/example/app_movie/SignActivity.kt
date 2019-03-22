@@ -22,11 +22,11 @@ class SignActivity : AppCompatActivity() {
         firebaseAuth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
-                    Toast.makeText(this,"등록됨~~", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this,"성공함~~", Toast.LENGTH_SHORT).show()
                     startActivity(Intent(applicationContext, MainActivity::class.java))
                     finish()
                 } else {
-                    Toast.makeText(this, "로그인 실패!", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "아이디 혹은 비밀번호 틀림~~", Toast.LENGTH_SHORT).show()
                 }
             }
     }

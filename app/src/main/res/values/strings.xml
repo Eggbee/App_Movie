@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">엇챠플레이</string>
     <string name="string_home">홈</string>
-    <string name="string_login">이메일로 로그인</string>
+    <string name="string_login">이메일로 회원가입</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

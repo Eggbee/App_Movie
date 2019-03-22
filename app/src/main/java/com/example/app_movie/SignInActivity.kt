@@ -1,6 +1,5 @@
 package com.example.app_movie
 
-import android.app.ProgressDialog
 import android.content.Intent
 import android.databinding.DataBindingUtil
 import android.support.v7.app.AppCompatActivity
@@ -14,22 +13,24 @@ class SignInActivity : AppCompatActivity(), SigninNavigator {
     lateinit var edit_email: EditText
     lateinit var edit_password: EditText
 
-    fun result(email:String, password:String) {
-        val firebaseAuth:FirebaseAuth= FirebaseAuth.getInstance()
+    fun result(email: String, password: String) {
+        val firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
         firebaseAuth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
-                    Toast.makeText(this,"등록됨~~",Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "성공함~~", Toast.LENGTH_SHORT).show()
                     startActivity(Intent(applicationContext, MainActivity::class.java))
                     finish()
+                } else if (password.length < 7) {
+                    Toast.makeText(this, "비밀번호는 6자리 이상임~", Toast.LENGTH_SHORT).show()
                 } else {
-                    Toast.makeText(this, "등록 에러!", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "서버오류~", Toast.LENGTH_SHORT).show()
                 }
             }
     }
 
     override fun intentMain() {
-        result(edit_email.text.toString().trim(),edit_password.text.toString().trim())
+        result(edit_email.text.toString().trim(), edit_password.text.toString().trim())
     }
 
     override fun intentLogin() {

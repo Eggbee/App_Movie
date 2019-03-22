@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.view.ViewPager
 import com.example.app_movie.databinding.ActivityLoginBinding
+import com.google.firebase.auth.FirebaseAuth
 import java.lang.Exception
 import kotlin.concurrent.thread
 
@@ -16,7 +17,7 @@ class LoginActivity : AppCompatActivity(), LoginNavigator {
     }
 
     override fun intentMain() {
-        startActivity(Intent(this, SignInActivity::class.java))
+        startActivity(Intent(this, MainActivity::class.java))
         finish()
     }
 
@@ -29,6 +30,10 @@ class LoginActivity : AppCompatActivity(), LoginNavigator {
         super.onCreate(savedInstanceState)
         val binding = DataBindingUtil.setContentView<ActivityLoginBinding>(this, R.layout.activity_login)
         binding.login = LoginViewModel(this)
+        val firebaseAuth:FirebaseAuth= FirebaseAuth.getInstance()
+        if(firebaseAuth.currentUser!=null){
+            intentMain()
+        }
         var num = 0;
         val viewPager = findViewById<ViewPager>(R.id.view_login)
         viewPager.adapter = LoginAdapter(supportFragmentManager)
