@@ -5,27 +5,23 @@
             android:id="@+id/action_one"
             app:showAsAction="withText"
             android:enabled="true"
-            android:icon="@android:drawable/ic_dialog_info"
-            android:iconTint="@color/colorAccent"
-            android:title="1번" />
+            android:icon="@drawable/ic_home_black_24dp"
+            android:title="홈" />
     <item
             android:id="@+id/action_two"
             app:showAsAction="withText"
-            android:icon="@android:drawable/ic_dialog_info"
-            android:iconTint="@color/colorAccent"
-            android:title="2번" />
+            android:icon="@drawable/ic_drawers"
+            android:title="카테고리" />
     <item
             android:id="@+id/action_three"
             app:showAsAction="withText"
             android:enabled="true"
-            android:icon="@android:drawable/ic_dialog_info"
-            android:iconTint="@color/colorAccent"
-            android:title="3번" />
+            android:icon="@drawable/ic_star_border_black_24dp"
+            android:title="평가하기" />
     <item
             android:id="@+id/action_four"
             app:showAsAction="withText"
             android:enabled="true"
-            android:icon="@android:drawable/ic_dialog_info"
-            android:iconTint="@color/colorAccent"
-            android:title="4번" />
+            android:icon="@drawable/ic_person_outline_black_24dp"
+            android:title="마이페이지" />
 </menu>
