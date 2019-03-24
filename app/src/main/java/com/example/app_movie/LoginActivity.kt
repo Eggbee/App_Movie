@@ -30,8 +30,8 @@ class LoginActivity : AppCompatActivity(), LoginNavigator {
         super.onCreate(savedInstanceState)
         val binding = DataBindingUtil.setContentView<ActivityLoginBinding>(this, R.layout.activity_login)
         binding.login = LoginViewModel(this)
-        val firebaseAuth:FirebaseAuth= FirebaseAuth.getInstance()
-        if(firebaseAuth.currentUser!=null){
+        val firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
+        if (firebaseAuth.currentUser != null) {
             intentMain()
         }
         var num = 0;

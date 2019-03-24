@@ -27,7 +27,6 @@ class MyPageFragment : Fragment() {
             startActivity(intent)
             activity!!.finish()
         }
-        val bt_video=layout.findViewById<Button>(R.id.bt_video).setOnClickListener { startActivity(Intent(context,VideoActivity::class.java)) }
         return layout
     }
 }
