@@ -20,4 +20,6 @@
     <string name="string_main_info1">무료 체험 시작하고</string>
     <string name="string_main_info2">모든 작품, 무제한으로 감상하세요.</string>
     <string name="string_login_goto_signin">이미 왓챠 회원이신가요?</string>
+    <string name="string_main_mypage">마이페이지</string>
+    <string name="string_main_logout">로그아웃</string>
 </resources>

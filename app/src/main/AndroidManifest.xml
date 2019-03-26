@@ -9,9 +9,9 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
-        <activity android:name=".VideoActivity">
+        <activity android:name=".Video.VideoActivity">
         </activity>
-        <activity android:name=".SignActivity">
+        <activity android:name=".Sign.SignActivity">
         </activity>
         <activity android:name=".SignInActivity">
         </activity>
@@ -22,7 +22,7 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity">
+        <activity android:name=".Main.MainActivity">
         </activity>
     </application>
 

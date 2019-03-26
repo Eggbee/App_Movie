@@ -6,7 +6,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/signin_edit_back"
-        tools:context=".MainActivity">
+        tools:context=".Main.MainActivity">
 
     <FrameLayout
             android:id="@+id/frag_main"

@@ -1,4 +1,4 @@
-package com.example.app_movie
+package com.example.app_movie.Video
 
 import android.net.Uri
 

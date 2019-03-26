@@ -1,4 +1,4 @@
-package com.example.app_movie
+package com.example.app_movie.Main
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -8,6 +8,8 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.content.Intent
 import android.widget.Toast
+import com.example.app_movie.LoginActivity
+import com.example.app_movie.R
 import com.google.firebase.auth.FirebaseAuth
 
 
@@ -17,8 +19,8 @@ class MyPageFragment : Fragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInsrtanceState: Bundle?): View? {
-        val layout = inflater.inflate(com.example.app_movie.R.layout.fragment_my_page, container, false) as ViewGroup
-        val bt_logout = layout.findViewById<Button>(com.example.app_movie.R.id.bt_logout)
+        val layout = inflater.inflate(R.layout.fragment_my_page, container, false) as ViewGroup
+        val bt_logout = layout.findViewById<Button>(R.id.bt_logout)
         bt_logout.setOnClickListener {
             val firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
             firebaseAuth.signOut()

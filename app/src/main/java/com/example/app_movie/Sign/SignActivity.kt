@@ -1,4 +1,4 @@
-package com.example.app_movie
+package com.example.app_movie.Sign
 
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
@@ -6,6 +6,8 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import com.example.app_movie.Main.MainActivity
+import com.example.app_movie.R
 import com.google.firebase.auth.FirebaseAuth
 
 class SignActivity : AppCompatActivity() {
@@ -23,7 +25,7 @@ class SignActivity : AppCompatActivity() {
         firebaseAuth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
-                    Toast.makeText(this, "성공함~~", Toast.LENGTH_SHORT).show()
+//                    Toast.makeText(this,firebaseAuth.uid.toString(), Toast.LENGTH_SHORT).show()
                     startActivity(Intent(applicationContext, MainActivity::class.java))
                     finish()
                 } else {

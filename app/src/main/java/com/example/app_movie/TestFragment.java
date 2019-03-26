@@ -20,7 +20,7 @@ public class TestFragment extends Fragment {
         bt_logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(getContext(),LoginActivity.class);
+                Intent intent=new Intent(getContext(), LoginActivity.class);
                 startActivity(intent);
                 getActivity().finish();
             }
