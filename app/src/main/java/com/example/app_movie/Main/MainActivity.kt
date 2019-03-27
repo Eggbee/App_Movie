@@ -1,13 +1,11 @@
 package com.example.app_movie.Main
 
-import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
-import android.widget.Button
+import com.example.app_movie.Main.Movie.MovieFragment
 import com.example.app_movie.R
-import com.example.app_movie.Video.VideoActivity
 
 class MainActivity : AppCompatActivity() {
     internal var movieFragment = MovieFragment()
@@ -19,7 +17,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_main)
-        val bt_button=findViewById<Button>(R.id.bt_video)
         // 첫 화면 지정
         val transaction = supportFragmentManager.beginTransaction()
         transaction.replace(R.id.frag_main, movieFragment).commitAllowingStateLoss()
