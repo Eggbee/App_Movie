@@ -5,6 +5,8 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
 import com.example.app_movie.Main.Movie.MovieFragment
+import com.example.app_movie.Main.Recommend.RecommendFragment
+import com.example.app_movie.Main.Search.SearchFragment
 import com.example.app_movie.R
 
 class MainActivity : AppCompatActivity() {

@@ -22,9 +22,10 @@
         <android.support.constraint.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="16dp"
+                android:layout_margin="8dp"
                 app:layout_constraintTop_toBottomOf="@id/view_movie"
                 android:background="@drawable/back_movie"
+
                 android:id="@+id/constraintLayout4">
 
             <TextView
@@ -130,7 +131,7 @@
             <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="새로 올라운 작품"
+                    android:text="왓플 최고의 인기작"
                     android:textColor="@android:color/white"
                     android:textSize="18sp"
                     android:layout_marginBottom="8dp"

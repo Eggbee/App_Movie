@@ -1,4 +1,4 @@
-package com.example.app_movie.Main
+package com.example.app_movie.Main.Recommend
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
