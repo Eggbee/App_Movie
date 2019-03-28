@@ -46,6 +46,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="HBO 인기 시리즈"
+            android:textStyle="bold"
             android:textColor="@android:color/white"
             android:textSize="24sp"
             android:layout_marginEnd="8dp"
