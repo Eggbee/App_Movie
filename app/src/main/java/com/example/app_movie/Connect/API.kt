@@ -9,5 +9,5 @@ import retrofit2.http.Query
 
 interface API {
     @GET("base")
-    fun getMovie(@Header("X-Naver-Client-Id") id:String, @Header("X-Naver-Client-Secret") secret:String, @Query("query") query: String, @Query("display") display: Int):Call<ItemModel>
+    fun getMovie(@Header("X-Naver-Client-Id") id:String, @Header("X-Naver-Client-Secret") secret:String, @Query("query") query: String, @Query("display") display: Int):Call<ExampleModel>
 }

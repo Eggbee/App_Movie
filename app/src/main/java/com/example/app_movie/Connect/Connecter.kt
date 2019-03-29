@@ -6,8 +6,8 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 object Connecter {
-    lateinit var retrofit: Retrofit
-    lateinit var api: API
+    var retrofit: Retrofit
+    var api: API
 
     init {
         val interceptor = HttpLoggingInterceptor()
@@ -16,14 +16,12 @@ object Connecter {
 
         retrofit = Retrofit
             .Builder()
-            .baseUrl("http://ec2-52-79-240-33.ap-northeast-2.compute.amazonaws.com/api/")
+            .baseUrl("http://127.0.0.1:5000/")
             .addConverterFactory(GsonConverterFactory.create())
             .client(client)
             .build()
 
         api = retrofit.create(API::class.java)
     }
-
     fun createApi() = retrofit.create(API::class.java)
-
 }
