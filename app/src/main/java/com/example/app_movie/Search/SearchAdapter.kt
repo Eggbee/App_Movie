@@ -8,17 +8,13 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.example.app_movie.R
 
 import java.util.ArrayList
 
 class SearchAdapter(internal var context: Context, internal var searchModel2s: ArrayList<com.example.app_movie.Search.SearchModel2>) :
     RecyclerView.Adapter<SearchAdapter.ViewHolder>() {
-    internal var recycler_item: Int = 0
-
-    init {
-        this.recycler_item = recycler_item
-    }
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, i: Int): ViewHolder {
         val view = LayoutInflater.from(viewGroup.context).inflate(R.layout.item_movie, viewGroup, false)
@@ -26,10 +22,7 @@ class SearchAdapter(internal var context: Context, internal var searchModel2s: A
     }
 
     override fun onBindViewHolder(viewHolder: ViewHolder, i: Int) {
-        val searchModel = searchModel2s[i]
-        viewHolder.text_movie.text = searchModel.text_movie
-        viewHolder.ic_movie.setImageURI(searchModel.text_image)
-        Glide.with(context).load(searchModel.text_image).into(viewHolder.ic_movie)
+        viewHolder.bind(searchModel2s[i])
     }
 
     override fun getItemCount(): Int {
@@ -37,11 +30,13 @@ class SearchAdapter(internal var context: Context, internal var searchModel2s: A
     }
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        var text_movie: TextView
-        var ic_movie:ImageView
-        init {
-            text_movie = itemView.findViewById(R.id.text_movie)
-            ic_movie=itemView.findViewById(R.id.ic_movie)
+        val text_movie=itemView.findViewById<TextView>(R.id.text_movie)
+        var ic_movie=itemView.findViewById<ImageView>(R.id.ic_movie)
+        fun bind(searchmodel: SearchModel2) {
+            text_movie?.text=searchmodel.text_Movie
+            if(ic_movie!=null){
+                Glide.with(itemView).load(searchmodel.text_Image).apply(RequestOptions().override(100, 115)).into(ic_movie)
+            }
         }
     }
 }
