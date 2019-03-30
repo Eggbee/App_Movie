@@ -2,9 +2,8 @@
 * Naver 영화 api를 사용하여 영화 즐겨찾기 기능을 구현해볼까 합니다~
 
 ## 사용 기술
-* Kotlin
 
-* Design Pattern- MVVM
+* Kotlin
 
 * Firebase Realtimedatabase,Auth
 
