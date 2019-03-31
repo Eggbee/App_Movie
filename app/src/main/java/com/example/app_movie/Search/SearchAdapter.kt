@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.annotation.GlideModule
 import com.bumptech.glide.request.RequestOptions
 import com.example.app_movie.R
 
@@ -35,7 +36,7 @@ class SearchAdapter(internal var context: Context, internal var searchModel2s: A
         fun bind(searchmodel: SearchModel2) {
             text_movie?.text=searchmodel.text_Movie
             if(ic_movie!=null){
-                Glide.with(itemView).load(searchmodel.text_Image).apply(RequestOptions().override(100, 115)).into(ic_movie)
+                Glide.with(itemView).load(searchmodel.text_Image).apply(RequestOptions().override(140, 155)).into(ic_movie)
             }
         }
     }

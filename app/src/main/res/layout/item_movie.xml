@@ -3,8 +3,9 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="180dp"
         android:layout_height="200dp"
+        android:layout_margin="8dp"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:background="@color/exo_error_message_background_color">
+        android:background="#5A5A5A">
 
     <ImageView
             android:id="@+id/ic_movie"
@@ -16,6 +17,7 @@
             android:layout_margin="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            android:src="@mipmap/ic_launcher"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintVertical_bias="0.0"/>
 

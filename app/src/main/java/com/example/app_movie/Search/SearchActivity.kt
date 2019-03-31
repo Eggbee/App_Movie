@@ -1,5 +1,6 @@
 package com.example.app_movie.Search
 
+import android.content.Intent
 import android.net.Uri
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -8,6 +9,7 @@ import android.support.v7.widget.RecyclerView
 import android.widget.EditText
 import com.bumptech.glide.Glide
 import com.example.app_movie.Connect.Connecter
+import com.example.app_movie.Main.MainActivity
 import com.example.app_movie.Main.Model.ExampleModel
 import com.example.app_movie.R
 import retrofit2.Call
@@ -18,20 +20,21 @@ import java.util.ArrayList
 
 class SearchActivity : AppCompatActivity() {
     lateinit var recycler_search: RecyclerView
-    var searchModel=ArrayList<SearchModel2>()
+    var searchModel = ArrayList<SearchModel2>()
     lateinit var movie_title: String
     lateinit var movie_image: String
     lateinit var exampleModellist: ExampleModel
-    lateinit var searchAdapter :SearchAdapter
+    lateinit var searchAdapter: SearchAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_search)
         val edit_search = findViewById<EditText>(com.example.app_movie.R.id.edit_search)
         recycler_search = findViewById(R.id.recycler_search)
         searchAdapter = SearchAdapter(applicationContext, searchModel)
-        recycler_search.layoutManager = GridLayoutManager(applicationContext, 2) as RecyclerView.LayoutManager?
+        recycler_search.layoutManager = GridLayoutManager(applicationContext, 2)
         recycler_search.adapter = searchAdapter
         edit_search.setOnClickListener {
+            searchModel.clear()
             get_movie(edit_search.text.toString())
         }
     }
@@ -45,8 +48,7 @@ class SearchActivity : AppCompatActivity() {
                 for (i in 0 until exampleModellist.items!!.size) {
                     movie_title = exampleModellist.items!!.get(i).title!!
                     movie_image = exampleModellist.items!!.get(i).image!!
-                    searchModel.add(SearchModel2(movie_title,movie_image))
-
+                    searchModel.add(SearchModel2(movie_title, movie_image))
                 }
                 recycler_search.adapter = searchAdapter
             }
@@ -55,5 +57,11 @@ class SearchActivity : AppCompatActivity() {
 
             }
         })
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        startActivity(Intent(this, MainActivity::class.java))
+        finish()
     }
 }

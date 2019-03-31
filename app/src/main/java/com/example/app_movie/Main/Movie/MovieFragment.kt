@@ -22,9 +22,6 @@ class MovieFragment : Fragment() {
         // Inflate the layout for this fragment
         val layout = inflater.inflate(R.layout.fragment_movie, container, false) as ViewGroup
         val viewPager = layout.findViewById<ViewPager>(R.id.view_movie)
-        val ic_search=layout.findViewById<ImageView>(R.id.ic_search)
-        ic_search.setOnClickListener { startActivity(Intent(activity,SearchActivity::class.java))
-        activity!!.finish()}
         viewPager.adapter = MovieAdapter(childFragmentManager)
         return layout
     }
