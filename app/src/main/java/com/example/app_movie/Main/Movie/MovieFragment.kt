@@ -7,11 +7,13 @@ import android.support.v4.view.ViewPager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.ImageView
-import com.example.app_movie.LoginAdapter
-import com.example.app_movie.R
-import com.example.app_movie.Search.SearchActivity
+import kotlinx.android.synthetic.main.fragment_movie.*
+import android.support.v7.app.AppCompatActivity
+import android.support.design.widget.CollapsingToolbarLayout
+
+
+
+
 
 class MovieFragment : Fragment() {
 
@@ -20,8 +22,8 @@ class MovieFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val layout = inflater.inflate(R.layout.fragment_movie, container, false) as ViewGroup
-        val viewPager = layout.findViewById<ViewPager>(R.id.view_movie)
+        val layout = inflater.inflate(com.example.app_movie.R.layout.fragment_movie, container, false) as ViewGroup
+        val viewPager = layout.findViewById<ViewPager>(com.example.app_movie.R.id.view_movie)
         viewPager.adapter = MovieAdapter(childFragmentManager)
         return layout
     }

@@ -1,12 +1,16 @@
 package com.example.app_movie.Category
 
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.view.View
 import com.example.app_movie.Connect.Connecter
+import com.example.app_movie.Info.InfoActivity
 import com.example.app_movie.Main.Model.ExampleModel
 import com.example.app_movie.R
+import com.example.app_movie.RecyclerItemClickListener
 import com.example.app_movie.Search.SearchAdapter
 import com.example.app_movie.Search.SearchModel2
 import retrofit2.Call
@@ -31,7 +35,26 @@ class CategoryActivity : AppCompatActivity() {
         categoryAdapter = CategoryAdapter(applicationContext, categoryModel)
         recycler_category.layoutManager = GridLayoutManager(applicationContext, 2) as RecyclerView.LayoutManager?
         recycler_category.adapter = categoryAdapter
-        getMovie_Category("a", category)
+        getMovie_Category("a", category + 1)
+        recycler_category.addOnItemTouchListener(
+            RecyclerItemClickListener(
+                applicationContext,
+                recycler_category,
+                object : RecyclerItemClickListener.OnItemClickListener {
+                    override fun onItemClick(view: View, position: Int) {
+                        val intent = Intent(applicationContext, InfoActivity::class.java)
+                        intent.putExtra("image", exampleModellist.items!!.get(position).image)
+                        intent.putExtra("title", exampleModellist.items!!.get(position).title)
+                        intent.putExtra("rating", exampleModellist.items!!.get(position).userRating)
+                        intent.putExtra("director", exampleModellist.items!!.get(position).director)
+                        startActivity(intent)
+                    }
+
+                    override fun onLongItemClick(view: View?, position: Int) {
+
+                    }
+                })
+        )
     }
 
     fun getMovie_Category(name: String, category: Int) {
