@@ -11,8 +11,6 @@ import android.view.ViewGroup
 import com.example.app_movie.Connect.Connecter
 import com.example.app_movie.Main.Model.ExampleModel
 import com.example.app_movie.R
-import com.example.app_movie.Search.SearchAdapter
-import com.example.app_movie.Search.SearchModel2
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -53,7 +51,13 @@ class RecommendFragment : Fragment() {
                     movie_title = exampleModellist.items!!.get(i).title!!
                     movie_year = exampleModellist.items!!.get(i).pubDate!!
                     movie_image = exampleModellist.items!!.get(i).image!!
-                    recommendModel.add(RecommendModel(movie_title, movie_year,movie_image))
+                    recommendModel.add(
+                        RecommendModel(
+                            movie_title,
+                            movie_year,
+                            movie_image
+                        )
+                    )
                 }
                 recycler_recommend.adapter = recommendAdapter
             }
