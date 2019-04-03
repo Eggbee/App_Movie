@@ -11,8 +11,6 @@ import com.example.app_movie.Info.InfoActivity
 import com.example.app_movie.Main.Model.ExampleModel
 import com.example.app_movie.R
 import com.example.app_movie.RecyclerItemClickListener
-import com.example.app_movie.Search.SearchAdapter
-import com.example.app_movie.Search.SearchModel2
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -33,7 +31,7 @@ class CategoryActivity : AppCompatActivity() {
         val category = intent.extras.getInt("position")
         recycler_category = findViewById(com.example.app_movie.R.id.recycler_category)
         categoryAdapter = CategoryAdapter(applicationContext, categoryModel)
-        recycler_category.layoutManager = GridLayoutManager(applicationContext, 2) as RecyclerView.LayoutManager?
+        recycler_category.layoutManager = GridLayoutManager(applicationContext, 2)
         recycler_category.adapter = categoryAdapter
         getMovie_Category("a", category + 1)
         recycler_category.addOnItemTouchListener(
