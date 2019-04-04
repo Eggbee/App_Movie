@@ -37,13 +37,15 @@ class RecommendFragment : Fragment() {
         val dividerItemDecoration = DividerItemDecoration(context!!, LinearLayoutManager(context).orientation)
         recycler_recommend.addItemDecoration(dividerItemDecoration)
         recycler_recommend.adapter = recommendAdapter
-        getMovie("a")
+        if (recommendModel.size == 0) {
+            getMovie("t")
+        }
         return layout
     }
 
     fun getMovie(name: String) {
         val retrofit = Connecter.createApi()
-        val call = retrofit.getMovie(name, 10)
+        val call = retrofit.getMovie(name, 10,1)
         call.enqueue(object : Callback<ExampleModel> {
             override fun onResponse(call: Call<ExampleModel>, response: Response<ExampleModel>) {
                 exampleModellist = response.body()!!

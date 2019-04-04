@@ -18,7 +18,6 @@ import android.view.WindowManager
 import com.example.app_movie.Info.InfoActivity
 import com.example.app_movie.RecyclerItemClickListener
 
-
 class SearchActivity : AppCompatActivity() {
     lateinit var recycler_search: RecyclerView
     var searchModel = ArrayList<SearchModel2>()
@@ -26,6 +25,7 @@ class SearchActivity : AppCompatActivity() {
     lateinit var movie_image: String
     lateinit var exampleModellist: ExampleModel
     lateinit var searchAdapter: SearchAdapter
+    var start_num = 1
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(com.example.app_movie.R.layout.activity_search)
@@ -37,7 +37,8 @@ class SearchActivity : AppCompatActivity() {
         recycler_search.adapter = searchAdapter
         edit_search.setOnClickListener {
             searchModel.clear()
-            get_movie(edit_search.text.toString())
+            start_num = 1
+            get_movie(edit_search.text.toString(), 1)
         }
         recycler_search.addOnItemTouchListener(
             RecyclerItemClickListener(
@@ -58,11 +59,25 @@ class SearchActivity : AppCompatActivity() {
                     }
                 })
         )
+        recycler_search.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+                if (!recycler_search.canScrollVertically(1)) {
+                    start_num = start_num + 10
+                    get_movie(edit_search.text.toString(), start_num)
+                    searchAdapter.notifyDataSetChanged()
+                }
+            }
+
+            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                super.onScrollStateChanged(recyclerView, newState)
+            }
+        })
     }
 
-    fun get_movie(name: String) {
+    fun get_movie(name: String, num: Int) {
         val retrofit = Connecter.createApi()
-        val call = retrofit.getMovie(name, 10)
+        val call = retrofit.getMovie(name, 10, num)
         call.enqueue(object : Callback<ExampleModel> {
             override fun onResponse(call: Call<ExampleModel>, response: Response<ExampleModel>) {
                 exampleModellist = response.body()!!

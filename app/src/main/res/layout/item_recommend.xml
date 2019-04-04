@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="130dp"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_margin="16dp">
 
     <ImageView
@@ -23,7 +23,6 @@
             android:id="@+id/text_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="dfdsfs"
             android:textColor="@android:color/white"
             android:textSize="18sp"
             android:layout_marginEnd="8dp"
@@ -42,8 +41,8 @@
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="sdfsd"
             android:textSize="17sp"
+            android:textColor="@color/signin_edit_text"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
@@ -64,6 +63,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             android:scaleX="0.8"
             android:scaleY="0.8"
+            android:max="10"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
             app:layout_constraintStart_toEndOf="@+id/ic_movie"
