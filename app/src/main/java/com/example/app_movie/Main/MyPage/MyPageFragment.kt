@@ -1,14 +1,18 @@
 package com.example.app_movie.Main.MyPage
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.support.v7.widget.RecyclerView
+import com.example.app_movie.Category.CategoryActivity
 import com.example.app_movie.Info.InfoData
 import com.example.app_movie.R
+import com.example.app_movie.RecyclerItemClickListener
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 
@@ -24,15 +28,17 @@ class MyPageFragment : Fragment() {
         val firebaseDatabase: FirebaseDatabase = FirebaseDatabase.getInstance()
         val database: DatabaseReference = firebaseDatabase.reference
         val recycler_favorite = layout.findViewById<RecyclerView>(R.id.recycler_favorite)
-        val myPageModel = ArrayList<MyPageModel>()
-        val adapter = MyPageAdapter(activity!!, myPageModel)
+        val infoData = ArrayList<InfoData>()
+        val adapter = MyPageAdapter(activity!!, infoData)
         recycler_favorite.layoutManager = LinearLayoutManager(context)
         recycler_favorite.adapter = adapter
+        val dividerItemDecoration = DividerItemDecoration(context!!, LinearLayoutManager(context).orientation)
+        recycler_favorite.addItemDecoration(dividerItemDecoration)
         database.child(firebaseAuth.uid.toString()).child("like").addChildEventListener(object : ChildEventListener {
             override fun onChildAdded(dataSnapshot: DataSnapshot, s: String?) {
-                val myPageModels = dataSnapshot.getValue(MyPageModel::class.java)
-                if (myPageModels != null) {
-                    myPageModel.add(myPageModels)
+                val infoDatas = dataSnapshot.getValue(InfoData::class.java)
+                if (infoDatas != null) {
+                    infoData.add(infoDatas)
                 }
                 adapter.notifyDataSetChanged()
             }
@@ -42,7 +48,7 @@ class MyPageFragment : Fragment() {
             }
 
             override fun onChildRemoved(dataSnapshot: DataSnapshot) {
-
+                adapter.notifyDataSetChanged()
             }
 
             override fun onChildMoved(dataSnapshot: DataSnapshot, s: String?) {
@@ -53,7 +59,19 @@ class MyPageFragment : Fragment() {
 
             }
         })
+        recycler_favorite.addOnItemTouchListener(
+            RecyclerItemClickListener(
+                context!!,
+                recycler_favorite,
+                object : RecyclerItemClickListener.OnItemClickListener {
+                    override fun onItemClick(view: View, position: Int) {
+                    }
 
+                    override fun onLongItemClick(view: View?, position: Int) {
+                        
+                    }
+                })
+        )
         return layout
     }
 }

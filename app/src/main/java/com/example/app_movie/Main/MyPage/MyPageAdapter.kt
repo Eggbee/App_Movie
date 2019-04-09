@@ -12,7 +12,7 @@ import com.example.app_movie.Info.InfoData
 import com.example.app_movie.R
 import kotlin.collections.ArrayList
 
-class MyPageAdapter(internal var context: Context, internal var myPageModel: ArrayList<MyPageModel>) :
+class MyPageAdapter(internal var context: Context, internal var infoData: ArrayList<InfoData>) :
     RecyclerView.Adapter<MyPageAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, i: Int): ViewHolder {
@@ -21,20 +21,20 @@ class MyPageAdapter(internal var context: Context, internal var myPageModel: Arr
     }
 
     override fun onBindViewHolder(viewHolder: ViewHolder, i: Int) {
-        viewHolder.bind(myPageModel[i])
+        viewHolder.bind(infoData[i])
     }
 
     override fun getItemCount(): Int {
-        return myPageModel.size
+        return infoData.size
     }
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val text_title=itemView.findViewById<TextView>(R.id.text_title)
         var ic_image=itemView.findViewById<ImageView>(R.id.ic_image)
-        fun bind(myPageModel: MyPageModel) {
-            text_title?.text=myPageModel.text_Title
+        fun bind(infoDatas: InfoData) {
+            text_title?.text=infoDatas.text_Title
             if(ic_image!=null){
-                Glide.with(itemView).load(myPageModel.text_Image).into(ic_image)
+                Glide.with(itemView).load(infoDatas.text_Image).into(ic_image)
             }
         }
     }
