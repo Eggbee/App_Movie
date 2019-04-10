@@ -15,17 +15,17 @@ import com.google.firebase.database.FirebaseDatabase
 class SignInActivity : AppCompatActivity(), SigninNavigator {
     lateinit var edit_email: EditText
     lateinit var edit_password: EditText
-    lateinit var edit_name:EditText
+    lateinit var edit_name: EditText
 
     fun result(email: String, password: String) {
         val firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
-        val firebaseDatabase:FirebaseDatabase= FirebaseDatabase.getInstance()
-        val database: DatabaseReference =firebaseDatabase.getReference()
+        val firebaseDatabase: FirebaseDatabase = FirebaseDatabase.getInstance()
+        val database: DatabaseReference = firebaseDatabase.getReference()
         firebaseAuth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
-                    val signinData= SigninData()
-                    signinData.name=edit_name.text.toString()
+                    val signinData = SigninData()
+                    signinData.name = edit_name.text.toString()
                     database.child(firebaseAuth.uid.toString()).push().setValue(signinData)
                     Toast.makeText(this, "성공함~~", Toast.LENGTH_SHORT).show()
                     startActivity(Intent(applicationContext, MainActivity::class.java))
@@ -49,12 +49,13 @@ class SignInActivity : AppCompatActivity(), SigninNavigator {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val binding = DataBindingUtil.setContentView<ActivitySignInBinding>(this,
+        val binding = DataBindingUtil.setContentView<ActivitySignInBinding>(
+            this,
             R.layout.activity_sign_in
         )
-        binding.sign= SigninViewModel(this)
+        binding.sign = SigninViewModel(this)
         edit_email = findViewById(R.id.edit_email)
         edit_password = findViewById(R.id.edit_password)
-        edit_name=findViewById(R.id.edit_name)
+        edit_name = findViewById(R.id.edit_name)
     }
 }
