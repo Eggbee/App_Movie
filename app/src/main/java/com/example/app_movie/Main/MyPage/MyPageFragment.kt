@@ -9,12 +9,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.support.v7.widget.RecyclerView
-import com.example.app_movie.Category.CategoryActivity
+import android.widget.Button
 import com.example.app_movie.Info.InfoData
+import com.example.app_movie.LoginActivity
 import com.example.app_movie.R
 import com.example.app_movie.RecyclerItemClickListener
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
+
 
 
 class MyPageFragment : Fragment() {
@@ -27,6 +29,7 @@ class MyPageFragment : Fragment() {
         val firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
         val firebaseDatabase: FirebaseDatabase = FirebaseDatabase.getInstance()
         val database: DatabaseReference = firebaseDatabase.reference
+        val bt_logout=layout.findViewById<Button>(R.id.bt_logout)
         val recycler_favorite = layout.findViewById<RecyclerView>(R.id.recycler_favorite)
         val infoData = ArrayList<InfoData>()
         val adapter = MyPageAdapter(activity!!, infoData)
@@ -34,6 +37,11 @@ class MyPageFragment : Fragment() {
         recycler_favorite.adapter = adapter
         val dividerItemDecoration = DividerItemDecoration(context!!, LinearLayoutManager(context).orientation)
         recycler_favorite.addItemDecoration(dividerItemDecoration)
+        bt_logout.setOnClickListener {
+            firebaseAuth.signOut()
+            activity!!.finish()
+            startActivity(Intent(context, LoginActivity::class.java))
+        }
         database.child(firebaseAuth.uid.toString()).child("like").addChildEventListener(object : ChildEventListener {
             override fun onChildAdded(dataSnapshot: DataSnapshot, s: String?) {
                 val infoDatas = dataSnapshot.getValue(InfoData::class.java)
@@ -68,7 +76,7 @@ class MyPageFragment : Fragment() {
                     }
 
                     override fun onLongItemClick(view: View?, position: Int) {
-                        
+
                     }
                 })
         )

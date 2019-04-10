@@ -1,20 +1,15 @@
 package com.example.app_movie.Main.Movie
 
-import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.view.ViewPager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import kotlinx.android.synthetic.main.fragment_movie.*
-import android.support.v7.app.AppCompatActivity
-import android.support.design.widget.CollapsingToolbarLayout
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
 import com.example.app_movie.Connect.Connecter
 import com.example.app_movie.Main.Model.ExampleModel
-import com.example.app_movie.Main.Recommend.RecommendModel
 import com.example.app_movie.R
 import retrofit2.Call
 import retrofit2.Callback
