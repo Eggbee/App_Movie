@@ -14,7 +14,10 @@ import com.example.app_movie.R
 
 import java.util.ArrayList
 
-class SearchAdapter(internal var context: Context, internal var searchModel2s: ArrayList<com.example.app_movie.Search.SearchModel2>) :
+class SearchAdapter(
+    internal var context: Context,
+    internal var searchModel2s: ArrayList<com.example.app_movie.Search.SearchModel2>
+) :
     RecyclerView.Adapter<SearchAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, i: Int): ViewHolder {
@@ -31,12 +34,13 @@ class SearchAdapter(internal var context: Context, internal var searchModel2s: A
     }
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val text_movie=itemView.findViewById<TextView>(R.id.text_movie)
-        var ic_movie=itemView.findViewById<ImageView>(R.id.ic_movie)
+        val text_movie = itemView.findViewById<TextView>(R.id.text_movie)
+        var ic_movie = itemView.findViewById<ImageView>(R.id.ic_movie)
         fun bind(searchmodel: SearchModel2) {
-            text_movie?.text=searchmodel.text_Movie
-            if(ic_movie!=null){
-                Glide.with(itemView).load(searchmodel.text_Image).apply(RequestOptions().override(150, 175)).into(ic_movie)
+            text_movie?.text = searchmodel.text_Movie
+            if (ic_movie != null) {
+                Glide.with(itemView).load(searchmodel.text_Image).apply(RequestOptions().override(150, 175))
+                    .into(ic_movie)
             }
         }
     }

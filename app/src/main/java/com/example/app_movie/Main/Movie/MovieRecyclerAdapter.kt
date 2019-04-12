@@ -29,12 +29,13 @@ class MovieRecyclerAdapter(internal var context: Context, internal var movieMode
     }
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val text_title=itemView.findViewById<TextView>(R.id.text_movie)
-        val ic_movie=itemView.findViewById<ImageView>(R.id.ic_movie)
+        val text_title = itemView.findViewById<TextView>(R.id.text_movie)
+        val ic_movie = itemView.findViewById<ImageView>(R.id.ic_movie)
         fun bind(movieModel: MovieModel) {
-            text_title?.text=movieModel.text_Title
-            if(ic_movie!=null){
-                Glide.with(itemView).load(movieModel.text_Image).apply(RequestOptions().override(150, 175)).into(ic_movie)
+            text_title?.text = movieModel.text_Title
+            if (ic_movie != null) {
+                Glide.with(itemView).load(movieModel.text_Image).apply(RequestOptions().override(150, 175))
+                    .into(ic_movie)
             }
         }
     }

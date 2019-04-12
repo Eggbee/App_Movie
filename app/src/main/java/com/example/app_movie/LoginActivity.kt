@@ -16,6 +16,7 @@ class LoginActivity : AppCompatActivity(), LoginNavigator {
         startActivity(Intent(this, SignActivity::class.java))
         finish()
     }
+
     override fun intentSignin() {
         startActivity(Intent(this, SignInActivity::class.java))
         finish()
@@ -23,10 +24,11 @@ class LoginActivity : AppCompatActivity(), LoginNavigator {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val binding = DataBindingUtil.setContentView<ActivityLoginBinding>(this,
+        val binding = DataBindingUtil.setContentView<ActivityLoginBinding>(
+            this,
             R.layout.activity_login
         )
-        binding.login= LoginViewModel(this)
+        binding.login = LoginViewModel(this)
         val firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
         if (firebaseAuth.currentUser != null) {
             startActivity(Intent(this, MainActivity::class.java))

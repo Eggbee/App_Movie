@@ -56,7 +56,7 @@ class SearchFragment : Fragment() {
                 object : RecyclerItemClickListener.OnItemClickListener {
                     override fun onItemClick(view: View, position: Int) {
                         val intent = Intent(context, CategoryActivity::class.java)
-                        intent.putExtra("position",position)
+                        intent.putExtra("position", position)
                         startActivity(intent)
                     }
 

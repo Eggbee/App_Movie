@@ -9,8 +9,8 @@ import retrofit2.http.Query
 
 interface API {
     @GET("base")
-    fun getMovie(@Query("query") query: String, @Query("display") display: Int,@Query("start") start:Int):Call<ExampleModel>
+    fun getMovie(@Query("query") query: String, @Query("display") display: Int, @Query("start") start: Int): Call<ExampleModel>
 
     @GET("category")
-    fun getMovie_Category(@Query("query")query:String,@Query("category")category:Int):Call<ExampleModel>
+    fun getMovie_Category(@Query("query") query: String, @Query("category") category: Int): Call<ExampleModel>
 }

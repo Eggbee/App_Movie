@@ -30,14 +30,15 @@ class RecommendAdapter(internal var context: Context, internal var recommendMode
     }
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val text_title=itemView.findViewById<TextView>(R.id.text_title)
-        val text_year=itemView.findViewById<TextView>(R.id.text_year)
-        val ic_movie=itemView.findViewById<ImageView>(R.id.ic_movie)
+        val text_title = itemView.findViewById<TextView>(R.id.text_title)
+        val text_year = itemView.findViewById<TextView>(R.id.text_year)
+        val ic_movie = itemView.findViewById<ImageView>(R.id.ic_movie)
         fun bind(recommendModel: RecommendModel) {
-            text_title?.text=recommendModel.text_title
-            text_year?.text=recommendModel.text_year
-            if(ic_movie!=null){
-                Glide.with(itemView).load(recommendModel.ic_image).apply(RequestOptions().override(150, 175)).into(ic_movie)
+            text_title?.text = recommendModel.text_title
+            text_year?.text = recommendModel.text_year
+            if (ic_movie != null) {
+                Glide.with(itemView).load(recommendModel.ic_image).apply(RequestOptions().override(150, 175))
+                    .into(ic_movie)
             }
         }
     }

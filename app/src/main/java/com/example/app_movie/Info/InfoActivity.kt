@@ -23,7 +23,7 @@ class InfoActivity : AppCompatActivity() {
         val intent = getIntent()
         val image = intent.extras.getString("image")
         text_title.text = intent.extras.getString("title")
-        var num:Int=0
+        var num: Int = 0
         Glide.with(this).load(image).apply(RequestOptions().override(150, 175)).into(ic_movie)
         ic_video.setOnClickListener { startActivity(Intent(this, VideoActivity::class.java)) }
         ic_favorite.setOnClickListener {
@@ -38,7 +38,7 @@ class InfoActivity : AppCompatActivity() {
                 infoData.text_Title = intent.extras.getString("title")
                 database.child(firebaseAuth.uid.toString()).child("like").push().setValue(infoData)
                 ic_favorite.setImageResource(R.drawable.ic_favorite_black_24dp)
-                num=1
+                num = 1
             }
         }
     }

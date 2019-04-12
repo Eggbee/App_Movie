@@ -30,12 +30,13 @@ class MyPageAdapter(internal var context: Context, internal var infoData: ArrayL
     }
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val text_title=itemView.findViewById<TextView>(R.id.text_title)
-        var ic_image=itemView.findViewById<ImageView>(R.id.ic_image)
+        val text_title = itemView.findViewById<TextView>(R.id.text_title)
+        var ic_image = itemView.findViewById<ImageView>(R.id.ic_image)
         fun bind(infoDatas: InfoData) {
-            text_title?.text=infoDatas.text_Title
-            if(ic_image!=null){
-                Glide.with(itemView).load(infoDatas.text_Image).apply(RequestOptions().override(150, 175)).into(ic_image)
+            text_title?.text = infoDatas.text_Title
+            if (ic_image != null) {
+                Glide.with(itemView).load(infoDatas.text_Image).apply(RequestOptions().override(150, 175))
+                    .into(ic_image)
             }
         }
     }

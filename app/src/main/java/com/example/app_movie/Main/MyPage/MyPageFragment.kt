@@ -48,8 +48,8 @@ class MyPageFragment : Fragment() {
                 object : RecyclerItemClickListener.OnItemClickListener {
                     override fun onItemClick(view: View, position: Int) {
                         val intent = Intent(context, InfoActivity::class.java)
-                        intent.putExtra("title",infoData.get(position).text_Title)
-                        intent.putExtra("image",infoData.get(position).text_Image)
+                        intent.putExtra("title", infoData.get(position).text_Title)
+                        intent.putExtra("image", infoData.get(position).text_Image)
                         startActivity(intent)
                     }
 

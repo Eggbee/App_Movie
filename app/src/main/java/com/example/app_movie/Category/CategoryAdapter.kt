@@ -29,12 +29,13 @@ class CategoryAdapter(internal var context: Context, internal var categoryModel:
     }
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val text_movie=itemView.findViewById<TextView>(R.id.text_movie)
-        var ic_movie=itemView.findViewById<ImageView>(R.id.ic_movie)
+        val text_movie = itemView.findViewById<TextView>(R.id.text_movie)
+        var ic_movie = itemView.findViewById<ImageView>(R.id.ic_movie)
         fun bind(categoryModel1: CategoryModel) {
-            text_movie?.text=categoryModel1.text_Movie
-            if(ic_movie!=null){
-                Glide.with(itemView).load(categoryModel1.text_Image).apply(RequestOptions().override(150, 175)).into(ic_movie)
+            text_movie?.text = categoryModel1.text_Movie
+            if (ic_movie != null) {
+                Glide.with(itemView).load(categoryModel1.text_Image).apply(RequestOptions().override(150, 175))
+                    .into(ic_movie)
             }
         }
     }

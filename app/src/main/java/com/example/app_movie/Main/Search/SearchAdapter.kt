@@ -34,6 +34,7 @@ class SearchAdapter(internal var context: Context, internal var searchModels: Ar
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var text_category: TextView
+
         init {
             text_category = itemView.findViewById(R.id.text_category)
         }

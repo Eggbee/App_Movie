@@ -42,7 +42,7 @@ class MovieFragment : Fragment() {
         val layout = inflater.inflate(com.example.app_movie.R.layout.fragment_movie, container, false) as ViewGroup
         val viewPager = layout.findViewById<ViewPager>(com.example.app_movie.R.id.view_movie)
         viewPager.adapter = MovieAdapter(childFragmentManager)
-        val bt_New_Movie=layout.findViewById<Button>(R.id.bt_new_movie)
+        val bt_New_Movie = layout.findViewById<Button>(R.id.bt_new_movie)
         recycler_Movie_First = layout.findViewById(R.id.recycler_movie_first)
         recycler_Movie_Second = layout.findViewById(R.id.recycler_movie_second)
         movieRecyclerAdapter = MovieRecyclerAdapter(activity!!, movieModel)
@@ -55,7 +55,7 @@ class MovieFragment : Fragment() {
         if (movieModel.size == 0) {
             getMovie("e")
         }
-        bt_New_Movie.setOnClickListener { startActivity(Intent(context,NewMovieActivity::class.java)) }
+        bt_New_Movie.setOnClickListener { startActivity(Intent(context, NewMovieActivity::class.java)) }
         recycler_Movie_First.addOnItemTouchListener(
             RecyclerItemClickListener(
                 context!!,
@@ -63,8 +63,8 @@ class MovieFragment : Fragment() {
                 object : RecyclerItemClickListener.OnItemClickListener {
                     override fun onItemClick(view: View, position: Int) {
                         val intent = Intent(context, InfoActivity::class.java)
-                        intent.putExtra("title",exampleModellist.items!!.get(position).title)
-                        intent.putExtra("image",exampleModellist.items!!.get(position).image)
+                        intent.putExtra("title", exampleModellist.items!!.get(position).title)
+                        intent.putExtra("image", exampleModellist.items!!.get(position).image)
                         startActivity(intent)
                     }
 

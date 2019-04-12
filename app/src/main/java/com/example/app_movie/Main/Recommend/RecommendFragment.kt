@@ -45,7 +45,7 @@ class RecommendFragment : Fragment() {
 
     fun getMovie(name: String) {
         val retrofit = Connecter.createApi()
-        val call = retrofit.getMovie(name, 10,1)
+        val call = retrofit.getMovie(name, 10, 1)
         call.enqueue(object : Callback<ExampleModel> {
             override fun onResponse(call: Call<ExampleModel>, response: Response<ExampleModel>) {
                 exampleModellist = response.body()!!
