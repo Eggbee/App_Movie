@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.example.app_movie.Info.InfoData
 import com.example.app_movie.R
 import kotlin.collections.ArrayList
@@ -34,7 +35,7 @@ class MyPageAdapter(internal var context: Context, internal var infoData: ArrayL
         fun bind(infoDatas: InfoData) {
             text_title?.text=infoDatas.text_Title
             if(ic_image!=null){
-                Glide.with(itemView).load(infoDatas.text_Image).into(ic_image)
+                Glide.with(itemView).load(infoDatas.text_Image).apply(RequestOptions().override(150, 175)).into(ic_image)
             }
         }
     }

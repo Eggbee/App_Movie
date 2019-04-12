@@ -79,6 +79,7 @@
                     android:id="@+id/textView7"/>
 
             <Button
+                    android:id="@+id/bt_new_movie"
                     android:layout_width="70dp"
                     android:layout_height="30dp"
                     app:layout_constraintEnd_toEndOf="parent"

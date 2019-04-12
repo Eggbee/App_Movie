@@ -3,7 +3,8 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="180dp"
         android:layout_height="200dp"
-        android:layout_margin="8dp"
+        android:layout_margin="12dp"
+        android:padding="8dp"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:background="#5A5A5A">
 
@@ -18,6 +19,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             android:src="@mipmap/ic_launcher"
+            android:adjustViewBounds="true"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintVertical_bias="0.0"/>
 
@@ -26,6 +28,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="8dp"
+            android:textSize="12sp"
             android:textColor="@android:color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

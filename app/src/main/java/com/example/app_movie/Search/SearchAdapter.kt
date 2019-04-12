@@ -36,7 +36,7 @@ class SearchAdapter(internal var context: Context, internal var searchModel2s: A
         fun bind(searchmodel: SearchModel2) {
             text_movie?.text=searchmodel.text_Movie
             if(ic_movie!=null){
-                Glide.with(itemView).load(searchmodel.text_Image).into(ic_movie)
+                Glide.with(itemView).load(searchmodel.text_Image).apply(RequestOptions().override(150, 175)).into(ic_movie)
             }
         }
     }

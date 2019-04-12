@@ -17,6 +17,7 @@ import java.util.ArrayList
 import android.view.WindowManager
 import com.example.app_movie.Info.InfoActivity
 import com.example.app_movie.RecyclerItemClickListener
+import kotlinx.android.synthetic.main.activity_search.*
 
 class SearchActivity : AppCompatActivity() {
     lateinit var recycler_search: RecyclerView
@@ -26,11 +27,11 @@ class SearchActivity : AppCompatActivity() {
     lateinit var exampleModellist: ExampleModel
     lateinit var searchAdapter: SearchAdapter
     var start_num = 1
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(com.example.app_movie.R.layout.activity_search)
         window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN)
-        val edit_search = findViewById<EditText>(com.example.app_movie.R.id.edit_search)
         recycler_search = findViewById(com.example.app_movie.R.id.recycler_search)
         searchAdapter = SearchAdapter(applicationContext, searchModel)
         recycler_search.layoutManager = GridLayoutManager(applicationContext, 2) as RecyclerView.LayoutManager?
@@ -40,6 +41,7 @@ class SearchActivity : AppCompatActivity() {
             start_num = 1
             get_movie(edit_search.text.toString(), 1)
         }
+
         recycler_search.addOnItemTouchListener(
             RecyclerItemClickListener(
                 applicationContext,
@@ -59,6 +61,7 @@ class SearchActivity : AppCompatActivity() {
                     }
                 })
         )
+
         recycler_search.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)

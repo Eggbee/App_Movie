@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.example.app_movie.R
 import java.util.ArrayList
 
@@ -33,7 +34,7 @@ class MovieRecyclerAdapter(internal var context: Context, internal var movieMode
         fun bind(movieModel: MovieModel) {
             text_title?.text=movieModel.text_Title
             if(ic_movie!=null){
-                Glide.with(itemView).load(movieModel.text_Image).into(ic_movie)
+                Glide.with(itemView).load(movieModel.text_Image).apply(RequestOptions().override(150, 175)).into(ic_movie)
             }
         }
     }

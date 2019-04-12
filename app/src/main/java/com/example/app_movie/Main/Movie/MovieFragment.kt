@@ -1,5 +1,6 @@
 package com.example.app_movie.Main.Movie
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.view.ViewPager
@@ -8,9 +9,15 @@ import android.view.View
 import android.view.ViewGroup
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.widget.Button
+import com.example.app_movie.Category.CategoryActivity
 import com.example.app_movie.Connect.Connecter
+import com.example.app_movie.Info.InfoActivity
 import com.example.app_movie.Main.Model.ExampleModel
+import com.example.app_movie.NewMovie.NewMovieActivity
 import com.example.app_movie.R
+import com.example.app_movie.RecyclerItemClickListener
+import kotlinx.android.synthetic.main.fragment_movie.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -35,8 +42,9 @@ class MovieFragment : Fragment() {
         val layout = inflater.inflate(com.example.app_movie.R.layout.fragment_movie, container, false) as ViewGroup
         val viewPager = layout.findViewById<ViewPager>(com.example.app_movie.R.id.view_movie)
         viewPager.adapter = MovieAdapter(childFragmentManager)
-        recycler_Movie_First = layout.findViewById<RecyclerView>(R.id.recycler_movie_first)
-        recycler_Movie_Second = layout.findViewById<RecyclerView>(R.id.recycler_movie_second)
+        val bt_New_Movie=layout.findViewById<Button>(R.id.bt_new_movie)
+        recycler_Movie_First = layout.findViewById(R.id.recycler_movie_first)
+        recycler_Movie_Second = layout.findViewById(R.id.recycler_movie_second)
         movieRecyclerAdapter = MovieRecyclerAdapter(activity!!, movieModel)
         recycler_Movie_First.layoutManager = GridLayoutManager(context, 2)
         recycler_Movie_Second.layoutManager = GridLayoutManager(context, 2)
@@ -47,6 +55,24 @@ class MovieFragment : Fragment() {
         if (movieModel.size == 0) {
             getMovie("e")
         }
+        bt_New_Movie.setOnClickListener { startActivity(Intent(context,NewMovieActivity::class.java)) }
+        recycler_Movie_First.addOnItemTouchListener(
+            RecyclerItemClickListener(
+                context!!,
+                recycler_Movie_First,
+                object : RecyclerItemClickListener.OnItemClickListener {
+                    override fun onItemClick(view: View, position: Int) {
+                        val intent = Intent(context, InfoActivity::class.java)
+                        intent.putExtra("title",exampleModellist.items!!.get(position).title)
+                        intent.putExtra("image",exampleModellist.items!!.get(position).image)
+                        startActivity(intent)
+                    }
+
+                    override fun onLongItemClick(view: View?, position: Int) {
+
+                    }
+                })
+        )
         return layout
     }
 

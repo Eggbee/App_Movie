@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.example.app_movie.R
 import java.util.ArrayList
 
@@ -33,7 +34,7 @@ class CategoryAdapter(internal var context: Context, internal var categoryModel:
         fun bind(categoryModel1: CategoryModel) {
             text_movie?.text=categoryModel1.text_Movie
             if(ic_movie!=null){
-                Glide.with(itemView).load(categoryModel1.text_Image).into(ic_movie)
+                Glide.with(itemView).load(categoryModel1.text_Image).apply(RequestOptions().override(150, 175)).into(ic_movie)
             }
         }
     }
