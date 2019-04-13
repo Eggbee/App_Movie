@@ -9,4 +9,6 @@
 
 * Exoplayer
 
+* Retrofit
+
 * 부족한 코드 보고 많은 조언 부탁드립니다~~ :tada:
