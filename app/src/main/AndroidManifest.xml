@@ -13,8 +13,6 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
-        <activity android:name=".NewMovie.NewMovieActivity">
-        </activity>
         <activity android:name=".Category.CategoryActivity">
         </activity>
         <activity android:name=".Info.InfoActivity">

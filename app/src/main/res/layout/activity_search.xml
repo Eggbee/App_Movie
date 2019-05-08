@@ -20,6 +20,8 @@
             android:layout_marginEnd="16dp"
             app:layout_constraintHorizontal_bias="0.0"
             android:layout_marginTop="8dp"
+            android:maxLines="1"
+            android:inputType="text"
             app:layout_constraintTop_toTopOf="parent"
             android:background="@drawable/back_search"
             android:padding="10dp"
@@ -53,4 +55,33 @@
             tools:layout_editor_absoluteX="0dp"
             android:layout_marginBottom="8dp"
             app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <ImageView
+            android:id="@+id/ic_movie"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_movie_black_24dp"
+            app:layout_constraintEnd_toEndOf="@+id/recycler_search"
+            app:layout_constraintStart_toStartOf="@+id/recycler_search"
+            android:visibility="visible"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
+            app:layout_constraintBottom_toBottomOf="@+id/recycler_search"
+            app:layout_constraintTop_toTopOf="@+id/recycler_search"/>
+
+    <TextView
+            android:id="@+id/text_movie"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="찾으시는 영화가 없네요ㅜㅜㅜㅜ"
+            android:textSize="20sp"
+            android:textColor="@android:color/white"
+            app:layout_constraintTop_toBottomOf="@+id/ic_movie"
+            android:visibility="visible"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"/>
 </android.support.constraint.ConstraintLayout>

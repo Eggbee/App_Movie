@@ -14,7 +14,6 @@ import com.example.app_movie.Category.CategoryActivity
 import com.example.app_movie.Connect.Connecter
 import com.example.app_movie.Info.InfoActivity
 import com.example.app_movie.Main.Model.ExampleModel
-import com.example.app_movie.NewMovie.NewMovieActivity
 import com.example.app_movie.R
 import com.example.app_movie.RecyclerItemClickListener
 import kotlinx.android.synthetic.main.fragment_movie.*
@@ -42,7 +41,6 @@ class MovieFragment : Fragment() {
         val layout = inflater.inflate(com.example.app_movie.R.layout.fragment_movie, container, false) as ViewGroup
         val viewPager = layout.findViewById<ViewPager>(com.example.app_movie.R.id.view_movie)
         viewPager.adapter = MovieAdapter(childFragmentManager)
-        val bt_New_Movie = layout.findViewById<Button>(R.id.bt_new_movie)
         recycler_Movie_First = layout.findViewById(R.id.recycler_movie_first)
         recycler_Movie_Second = layout.findViewById(R.id.recycler_movie_second)
         movieRecyclerAdapter = MovieRecyclerAdapter(activity!!, movieModel)
@@ -55,7 +53,6 @@ class MovieFragment : Fragment() {
         if (movieModel.size == 0) {
             getMovie("e")
         }
-        bt_New_Movie.setOnClickListener { startActivity(Intent(context, NewMovieActivity::class.java)) }
         recycler_Movie_First.addOnItemTouchListener(
             RecyclerItemClickListener(
                 context!!,

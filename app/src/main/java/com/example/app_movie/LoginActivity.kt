@@ -28,7 +28,8 @@ class LoginActivity : AppCompatActivity(), LoginNavigator {
             this,
             R.layout.activity_login
         )
-        binding.login = LoginViewModel(this)
+//        binding.login = LoginViewModel(this)
+        binding.login=LoginViewModel(this)
         val firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
         if (firebaseAuth.currentUser != null) {
             startActivity(Intent(this, MainActivity::class.java))
