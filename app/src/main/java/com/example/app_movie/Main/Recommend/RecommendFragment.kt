@@ -1,10 +1,10 @@
 package com.example.app_movie.Main.Recommend
 
 import android.os.Bundle
-import android.support.v4.app.Fragment
-import android.support.v7.widget.DividerItemDecoration
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
+import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -33,8 +33,13 @@ class RecommendFragment : Fragment() {
         recycler_recommend = layout.findViewById<View>(R.id.recycler_recommend) as RecyclerView
         recycler_recommend.setHasFixedSize(true)
         recommendAdapter = RecommendAdapter(activity!!, recommendModel)
-        recycler_recommend.layoutManager = LinearLayoutManager(context)
-        val dividerItemDecoration = DividerItemDecoration(context!!, LinearLayoutManager(context).orientation)
+        recycler_recommend.layoutManager =
+            LinearLayoutManager(context)
+        val dividerItemDecoration =
+            DividerItemDecoration(
+                context!!,
+                LinearLayoutManager(context).orientation
+            )
         recycler_recommend.addItemDecoration(dividerItemDecoration)
         recycler_recommend.adapter = recommendAdapter
         if (recommendModel.size == 0) {

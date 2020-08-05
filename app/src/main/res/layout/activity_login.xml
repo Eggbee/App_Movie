@@ -11,12 +11,12 @@
                 type="com.example.app_movie.LoginViewModel"/>
     </data>
 
-    <android.support.constraint.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@android:color/black">
 
-        <android.support.v4.view.ViewPager
+        <androidx.viewpager.widget.ViewPager
                 android:id="@+id/view_login"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
@@ -59,5 +59,5 @@
                 android:onClick="@{(view)->login.touch(view)}"
                 android:id="@+id/button"/>
 
-    </android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

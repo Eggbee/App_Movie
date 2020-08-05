@@ -1,10 +1,10 @@
 package com.example.app_movie.Category
 
 import android.content.Intent
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.support.v7.widget.GridLayoutManager
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import android.view.View
 import com.example.app_movie.Connect.Connecter
 import com.example.app_movie.Info.InfoActivity
@@ -31,7 +31,8 @@ class CategoryActivity : AppCompatActivity() {
         val category = intent.extras.getInt("position")
         recycler_category = findViewById(com.example.app_movie.R.id.recycler_category)
         categoryAdapter = CategoryAdapter(applicationContext, categoryModel)
-        recycler_category.layoutManager = GridLayoutManager(applicationContext, 2)
+        recycler_category.layoutManager =
+            GridLayoutManager(applicationContext, 2)
         recycler_category.adapter = categoryAdapter
         getMovie_Category("a", category + 1)
         recycler_category.addOnItemTouchListener(

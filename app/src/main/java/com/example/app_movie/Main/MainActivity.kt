@@ -2,9 +2,9 @@ package com.example.app_movie.Main
 
 import android.content.Intent
 import android.content.pm.ActivityInfo
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.support.design.widget.BottomNavigationView
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import android.widget.ImageView
 import com.example.app_movie.Main.Movie.MovieFragment
 import com.example.app_movie.Main.MyPage.MyPageFragment

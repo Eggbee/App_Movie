@@ -1,6 +1,6 @@
 package com.example.app_movie
 
-import android.arch.lifecycle.ViewModel
+import androidx.lifecycle.ViewModel
 import android.view.View
 
 class LoginViewModel(val loginNavigator: LoginNavigator) : ViewModel() {

@@ -1,10 +1,10 @@
 package com.example.app_movie
 
 import android.content.Intent
-import android.databinding.DataBindingUtil
-import android.support.v7.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.support.v4.view.ViewPager
+import androidx.viewpager.widget.ViewPager
 import com.example.app_movie.Main.MainActivity
 import com.example.app_movie.Sign.SignActivity
 import com.example.app_movie.databinding.ActivityLoginBinding

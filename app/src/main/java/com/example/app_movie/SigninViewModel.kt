@@ -1,7 +1,7 @@
 package com.example.app_movie
 
-import android.arch.lifecycle.ViewModel
-import android.databinding.ObservableField
+import androidx.lifecycle.ViewModel
+import androidx.databinding.ObservableField
 import android.view.View
 
 class SigninViewModel(val signinNavigator: SigninNavigator) : ViewModel() {

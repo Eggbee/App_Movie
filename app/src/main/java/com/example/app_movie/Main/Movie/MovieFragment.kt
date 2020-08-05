@@ -2,13 +2,13 @@ package com.example.app_movie.Main.Movie
 
 import android.content.Intent
 import android.os.Bundle
-import android.support.v4.app.Fragment
-import android.support.v4.view.ViewPager
+import androidx.fragment.app.Fragment
+import androidx.viewpager.widget.ViewPager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.support.v7.widget.GridLayoutManager
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import android.widget.Button
 import com.example.app_movie.Category.CategoryActivity
 import com.example.app_movie.Connect.Connecter
@@ -44,8 +44,10 @@ class MovieFragment : Fragment() {
         recycler_Movie_First = layout.findViewById(R.id.recycler_movie_first)
         recycler_Movie_Second = layout.findViewById(R.id.recycler_movie_second)
         movieRecyclerAdapter = MovieRecyclerAdapter(activity!!, movieModel)
-        recycler_Movie_First.layoutManager = GridLayoutManager(context, 2)
-        recycler_Movie_Second.layoutManager = GridLayoutManager(context, 2)
+        recycler_Movie_First.layoutManager =
+            GridLayoutManager(context, 2)
+        recycler_Movie_Second.layoutManager =
+            GridLayoutManager(context, 2)
         recycler_Movie_First.setHasFixedSize(true)
         recycler_Movie_Second.setHasFixedSize(true)
         recycler_Movie_First.adapter = movieRecyclerAdapter

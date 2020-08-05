@@ -1,10 +1,10 @@
 package com.example.app_movie.Search
 
 import android.content.Intent
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.support.v7.widget.GridLayoutManager
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import android.view.View
 import android.widget.EditText
 import com.example.app_movie.Connect.Connecter
@@ -46,7 +46,10 @@ class SearchActivity : AppCompatActivity() {
         text_movie = find(R.id.text_movie)
         ic_movie = find(R.id.ic_movie)
         searchAdapter = SearchAdapter(applicationContext, searchModel)
-        recycler_search.layoutManager = GridLayoutManager(applicationContext, 2) as RecyclerView.LayoutManager?
+        recycler_search.layoutManager = GridLayoutManager(
+            applicationContext,
+            2
+        ) as RecyclerView.LayoutManager?
         recycler_search.adapter = searchAdapter
         edit_search.setOnClickListener {
             text_movie.visibility = View.INVISIBLE

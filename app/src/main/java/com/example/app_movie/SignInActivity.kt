@@ -1,8 +1,8 @@
 package com.example.app_movie
 
 import android.content.Intent
-import android.databinding.DataBindingUtil
-import android.support.v7.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.EditText
 import android.widget.Toast

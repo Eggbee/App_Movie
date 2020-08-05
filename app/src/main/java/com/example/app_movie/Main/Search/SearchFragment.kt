@@ -1,12 +1,12 @@
 package com.example.app_movie.Main.Search
 
-import android.arch.lifecycle.ViewModel
+import androidx.lifecycle.ViewModel
 import android.content.Intent
 import android.os.Bundle
-import android.support.v4.app.Fragment
-import android.support.v7.widget.DividerItemDecoration
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
+import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -28,8 +28,13 @@ class SearchFragment : Fragment() {
         val searchModels = ArrayList<SearchModel>()
         recyclerView.setHasFixedSize(true)
         val searchAdapter = SearchAdapter(activity!!, searchModels)
-        recyclerView.layoutManager = LinearLayoutManager(context)
-        val dividerItemDecoration = DividerItemDecoration(context!!, LinearLayoutManager(context).orientation)
+        recyclerView.layoutManager =
+            LinearLayoutManager(context)
+        val dividerItemDecoration =
+            DividerItemDecoration(
+                context!!,
+                LinearLayoutManager(context).orientation
+            )
         recyclerView.addItemDecoration(dividerItemDecoration)
         recyclerView.adapter = searchAdapter
         searchModels.add(SearchModel("드라마"))

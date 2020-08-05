@@ -12,12 +12,12 @@
                 type="com.example.app_movie.SigninViewModel"/>
     </data>
 
-    <android.support.constraint.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/signin_back">
 
-        <android.support.constraint.ConstraintLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:background="@android:color/black"
@@ -55,7 +55,7 @@
                     app:layout_constraintHorizontal_bias="0.053"
                     app:layout_constraintVertical_bias="0.545"
                     android:onClick="@{(view)->sign.touch(view)}"/>
-        </android.support.constraint.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
 
         <EditText
@@ -131,7 +131,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginLeft="16dp"/>
 
-        <android.support.v7.widget.AppCompatCheckBox
+        <androidx.appcompat.widget.AppCompatCheckBox
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -163,5 +163,5 @@
                 android:text="@string/stirng_signin"
                 android:textColor="@color/signin_edit_text"
                 android:onClick="@{(view)->sign.touch_main(view)}"/>
-    </android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
