@@ -21,8 +21,8 @@ class InfoActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_info)
         val intent = getIntent()
-        val image = intent.extras.getString("image")
-        text_title.text = intent.extras.getString("title")
+        val image = intent.extras?.getString("image")
+        text_title.text = intent.extras?.getString("title")
         var num: Int = 0
         Glide.with(this).load(image).apply(RequestOptions().override(150, 175)).into(ic_movie)
         ic_video.setOnClickListener { startActivity(Intent(this, VideoActivity::class.java)) }
@@ -35,7 +35,7 @@ class InfoActivity : AppCompatActivity() {
                 val database: DatabaseReference = firebaseDatabase.getReference()
                 val infoData = InfoData()
                 infoData.text_Image = image
-                infoData.text_Title = intent.extras.getString("title")
+                infoData.text_Title = intent.extras?.getString("title")
                 database.child(firebaseAuth.uid.toString()).child("like").push().setValue(infoData)
                 ic_favorite.setImageResource(R.drawable.ic_favorite_black_24dp)
                 num = 1

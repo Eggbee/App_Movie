@@ -11,7 +11,6 @@ import com.example.app_movie.databinding.ActivitySignInBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
-import org.jetbrains.anko.toast
 
 class SignInActivity : AppCompatActivity(), SigninNavigator {
     lateinit var edit_email: EditText
@@ -28,13 +27,11 @@ class SignInActivity : AppCompatActivity(), SigninNavigator {
                     val signinData = SigninData()
                     signinData.name = edit_name.text.toString()
                     database.child(firebaseAuth.uid.toString()).push().setValue(signinData)
-                    toast("성공함")
                     startActivity(Intent(applicationContext, MainActivity::class.java))
                     finish()
                 } else if (password.length < 7) {
-                    toast("비밀번호는 6자리 이상")
+
                 } else {
-                    toast("이미 이메일이 있습니다.")
                 }
             }
     }

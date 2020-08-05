@@ -6,11 +6,11 @@ import androidx.fragment.app.FragmentStatePagerAdapter
 
 class MovieAdapter(fm: FragmentManager) : FragmentStatePagerAdapter(fm) {
 
-    override fun getItem(i: Int): Fragment? {
+    override fun getItem(i: Int): Fragment {
         when (i) {
             0 -> return FirstFragment()
             1 -> return SecondFragment()
-            else -> return null
+            else -> return FirstFragment()
         }
     }
 

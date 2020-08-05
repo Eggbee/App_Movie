@@ -28,13 +28,15 @@ class CategoryActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_category)
         val intent = getIntent()
-        val category = intent.extras.getInt("position")
+        val category = intent.extras?.getInt("position")
         recycler_category = findViewById(com.example.app_movie.R.id.recycler_category)
         categoryAdapter = CategoryAdapter(applicationContext, categoryModel)
         recycler_category.layoutManager =
             GridLayoutManager(applicationContext, 2)
         recycler_category.adapter = categoryAdapter
-        getMovie_Category("a", category + 1)
+        if (category != null) {
+            getMovie_Category("a", category + 1)
+        }
         recycler_category.addOnItemTouchListener(
             RecyclerItemClickListener(
                 applicationContext,

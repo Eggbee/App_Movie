@@ -23,7 +23,6 @@ import com.example.app_movie.RecyclerItemClickListener
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.activity_search.*
-import org.jetbrains.anko.find
 
 class SearchActivity : AppCompatActivity() {
     lateinit var recycler_search: RecyclerView
@@ -32,8 +31,6 @@ class SearchActivity : AppCompatActivity() {
     lateinit var movie_image: String
     lateinit var exampleModellist: ExampleModel
     lateinit var searchAdapter: SearchAdapter
-    lateinit var ic_movie: ImageView
-    lateinit var text_movie: TextView
     val firebaseDatabase: FirebaseDatabase = FirebaseDatabase.getInstance()
     val database: DatabaseReference = firebaseDatabase.getReference()
     var start_num = 1
@@ -43,13 +40,11 @@ class SearchActivity : AppCompatActivity() {
         setContentView(com.example.app_movie.R.layout.activity_search)
         window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN)
         recycler_search = findViewById(com.example.app_movie.R.id.recycler_search)
-        text_movie = find(R.id.text_movie)
-        ic_movie = find(R.id.ic_movie)
         searchAdapter = SearchAdapter(applicationContext, searchModel)
         recycler_search.layoutManager = GridLayoutManager(
             applicationContext,
             2
-        ) as RecyclerView.LayoutManager?
+        )
         recycler_search.adapter = searchAdapter
         edit_search.setOnClickListener {
             text_movie.visibility = View.INVISIBLE

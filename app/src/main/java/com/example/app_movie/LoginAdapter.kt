@@ -6,12 +6,12 @@ import androidx.fragment.app.FragmentStatePagerAdapter
 
 class LoginAdapter(fm: FragmentManager) : FragmentStatePagerAdapter(fm) {
 
-    override fun getItem(i: Int): Fragment? {
+    override fun getItem(i: Int): Fragment {
         when (i) {
             0 -> return LoginFirstFragment()
             1 -> return LoginSecondFragment()
             2 -> return LoginThirdFragment()
-            else -> return null
+            else -> return LoginFirstFragment()
         }
     }
 
