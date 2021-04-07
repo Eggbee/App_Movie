@@ -1,10 +1,8 @@
 package com.example.app_movie.Connect
 
-import com.example.app_movie.Main.Model.ExampleModel
-import com.example.app_movie.Main.Model.ItemModel
+import com.example.app_movie.main.model.ExampleModel
 import retrofit2.Call
 import retrofit2.http.GET
-import retrofit2.http.Header
 import retrofit2.http.Query
 
 interface API {

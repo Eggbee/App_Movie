@@ -1,4 +1,4 @@
-package com.example.app_movie.Main.MyPage
+package com.example.app_movie.main.mypage
 
 import android.content.Context
 import androidx.recyclerview.widget.RecyclerView

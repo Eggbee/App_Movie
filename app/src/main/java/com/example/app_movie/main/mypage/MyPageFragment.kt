@@ -1,4 +1,4 @@
-package com.example.app_movie.Main.MyPage
+package com.example.app_movie.main.mypage
 
 import android.content.Intent
 import android.os.Bundle
@@ -10,7 +10,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import android.widget.Button
-import com.example.app_movie.Category.CategoryActivity
 import com.example.app_movie.Info.InfoActivity
 import com.example.app_movie.Info.InfoData
 import com.example.app_movie.LoginActivity

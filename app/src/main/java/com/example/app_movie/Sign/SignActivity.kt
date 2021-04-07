@@ -6,7 +6,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
-import com.example.app_movie.Main.MainActivity
+import com.example.app_movie.main.MainActivity
 import com.example.app_movie.R
 import com.google.firebase.auth.FirebaseAuth
 

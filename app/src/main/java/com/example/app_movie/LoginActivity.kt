@@ -5,7 +5,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.viewpager.widget.ViewPager
-import com.example.app_movie.Main.MainActivity
+import com.example.app_movie.main.MainActivity
 import com.example.app_movie.Sign.SignActivity
 import com.example.app_movie.databinding.ActivityLoginBinding
 import com.google.firebase.auth.FirebaseAuth

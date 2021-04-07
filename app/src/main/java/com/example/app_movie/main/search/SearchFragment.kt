@@ -1,6 +1,5 @@
-package com.example.app_movie.Main.Search
+package com.example.app_movie.main.search
 
-import androidx.lifecycle.ViewModel
 import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -11,7 +10,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.app_movie.Category.CategoryActivity
-import com.example.app_movie.Info.InfoActivity
 import com.example.app_movie.R
 import com.example.app_movie.RecyclerItemClickListener
 

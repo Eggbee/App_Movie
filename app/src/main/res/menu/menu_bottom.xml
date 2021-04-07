@@ -2,24 +2,24 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
       xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-            android:id="@+id/action_one"
+            android:id="@+id/navigation_movie"
             app:showAsAction="withText"
             android:enabled="true"
             android:icon="@drawable/ic_home_black_24dp"
             android:title="홈" />
     <item
-            android:id="@+id/action_two"
+            android:id="@+id/navigation_search"
             app:showAsAction="withText"
             android:icon="@drawable/ic_drawers"
             android:title="카테고리" />
     <item
-            android:id="@+id/action_three"
+            android:id="@+id/navigation_recommend"
             app:showAsAction="withText"
             android:enabled="true"
             android:icon="@drawable/ic_star_border_black_24dp"
             android:title="평가하기" />
     <item
-            android:id="@+id/action_four"
+            android:id="@+id/navigation_mypage"
             app:showAsAction="withText"
             android:enabled="true"
             android:icon="@drawable/ic_person_outline_black_24dp"

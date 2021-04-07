@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import android.view.View
 import com.example.app_movie.Connect.Connecter
 import com.example.app_movie.Info.InfoActivity
-import com.example.app_movie.Main.Model.ExampleModel
+import com.example.app_movie.main.model.ExampleModel
 import com.example.app_movie.R
 import com.example.app_movie.RecyclerItemClickListener
 import retrofit2.Call

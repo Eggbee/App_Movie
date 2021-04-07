@@ -1,4 +1,4 @@
-package com.example.app_movie.Main.Search
+package com.example.app_movie.main.search
 
 import android.content.Context
 import androidx.recyclerview.widget.RecyclerView

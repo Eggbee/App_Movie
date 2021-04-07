@@ -1,4 +1,4 @@
-package com.example.app_movie.Main.Recommend
+package com.example.app_movie.main.recommend
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -9,7 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.app_movie.Connect.Connecter
-import com.example.app_movie.Main.Model.ExampleModel
+import com.example.app_movie.main.model.ExampleModel
 import com.example.app_movie.R
 import retrofit2.Call
 import retrofit2.Callback
