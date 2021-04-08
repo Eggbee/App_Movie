@@ -1,8 +1,8 @@
 package com.example.app_movie
 
-import androidx.lifecycle.ViewModel
-import androidx.databinding.ObservableField
 import android.view.View
+import androidx.databinding.ObservableField
+import androidx.lifecycle.ViewModel
 
 class SigninViewModel(val signinNavigator: SigninNavigator) : ViewModel() {
     val email = ObservableField<String>("")

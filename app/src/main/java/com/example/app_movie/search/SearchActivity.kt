@@ -1,24 +1,24 @@
-package com.example.app_movie.Search
+package com.example.app_movie.search
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import android.view.WindowManager
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import android.view.View
-import com.example.app_movie.Connect.Connecter
+import com.example.app_movie.RecyclerItemClickListener
+import com.example.app_movie.connect.Connecter
+import com.example.app_movie.info.InfoActivity
 import com.example.app_movie.main.MainActivity
 import com.example.app_movie.main.model.ExampleModel
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import java.util.ArrayList
-import android.view.WindowManager
-import com.example.app_movie.Info.InfoActivity
-import com.example.app_movie.RecyclerItemClickListener
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.activity_search.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import java.util.*
 
 class SearchActivity : AppCompatActivity() {
     lateinit var recycler_search: RecyclerView
@@ -28,7 +28,7 @@ class SearchActivity : AppCompatActivity() {
     lateinit var exampleModellist: ExampleModel
     lateinit var searchAdapter: SearchAdapter
     val firebaseDatabase: FirebaseDatabase = FirebaseDatabase.getInstance()
-    val database: DatabaseReference = firebaseDatabase.getReference()
+    val database: DatabaseReference = firebaseDatabase.reference
     var start_num = 1
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -80,9 +80,6 @@ class SearchActivity : AppCompatActivity() {
                 }
             }
 
-            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
-                super.onScrollStateChanged(recyclerView, newState)
-            }
         })
     }
 

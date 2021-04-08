@@ -1,20 +1,20 @@
-package com.example.app_movie.Category
+package com.example.app_movie.category
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import android.view.View
-import com.example.app_movie.Connect.Connecter
-import com.example.app_movie.Info.InfoActivity
-import com.example.app_movie.main.model.ExampleModel
 import com.example.app_movie.R
 import com.example.app_movie.RecyclerItemClickListener
+import com.example.app_movie.connect.Connecter
+import com.example.app_movie.info.InfoActivity
+import com.example.app_movie.main.model.ExampleModel
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.util.ArrayList
+import java.util.*
 
 class CategoryActivity : AppCompatActivity() {
     lateinit var exampleModellist: ExampleModel
@@ -27,7 +27,7 @@ class CategoryActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_category)
-        val intent = getIntent()
+        val intent = intent
         val category = intent.extras?.getInt("position")
         recycler_category = findViewById(com.example.app_movie.R.id.recycler_category)
         categoryAdapter = CategoryAdapter(applicationContext, categoryModel)

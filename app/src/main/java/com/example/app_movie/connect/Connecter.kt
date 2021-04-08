@@ -1,4 +1,4 @@
-package com.example.app_movie.Connect
+package com.example.app_movie.connect
 
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor

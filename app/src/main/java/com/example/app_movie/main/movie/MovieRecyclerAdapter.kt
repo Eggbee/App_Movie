@@ -1,22 +1,22 @@
 package com.example.app_movie.main.movie
 
-import android.content.Context
-import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.example.app_movie.R
-import java.util.ArrayList
+import java.util.*
 
-class MovieRecyclerAdapter(internal var context: Context, internal var movieModel: ArrayList<MovieModel>) :
+class MovieRecyclerAdapter(val movieModel: ArrayList<MovieModel>) :
     RecyclerView.Adapter<MovieRecyclerAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, i: Int): ViewHolder {
-        val view = LayoutInflater.from(viewGroup.context).inflate(R.layout.item_movie, viewGroup, false)
+        val view =
+            LayoutInflater.from(viewGroup.context).inflate(R.layout.item_movie, viewGroup, false)
         return ViewHolder(view)
     }
 
@@ -34,7 +34,8 @@ class MovieRecyclerAdapter(internal var context: Context, internal var movieMode
         fun bind(movieModel: MovieModel) {
             text_title?.text = movieModel.text_Title
             if (ic_movie != null) {
-                Glide.with(itemView).load(movieModel.text_Image).apply(RequestOptions().override(150, 175))
+                Glide.with(itemView).load(movieModel.text_Image)
+                    .apply(RequestOptions().override(150, 175))
                     .into(ic_movie)
             }
         }

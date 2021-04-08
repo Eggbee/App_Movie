@@ -7,15 +7,19 @@ class ExampleModel {
     @SerializedName("lastBuildDate")
     @Expose
     var lastBuildDate: String? = null
+
     @SerializedName("total")
     @Expose
     var total: Int? = null
+
     @SerializedName("start")
     @Expose
     var start: Int? = null
+
     @SerializedName("display")
     @Expose
     var display: Int? = null
+
     @SerializedName("items")
     @Expose
     var items: List<ItemModel>? = null

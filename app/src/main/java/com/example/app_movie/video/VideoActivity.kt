@@ -1,13 +1,13 @@
-package com.example.app_movie.Video
+package com.example.app_movie.video
 
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
-import com.google.android.exoplayer2.SimpleExoPlayer
-import kotlinx.android.synthetic.main.activity_video.*
 import android.content.pm.ActivityInfo
+import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.example.app_movie.R
+import com.google.android.exoplayer2.SimpleExoPlayer
 import com.google.android.exoplayer2.source.ProgressiveMediaSource
 import com.google.android.exoplayer2.upstream.DefaultHttpDataSourceFactory
+import kotlinx.android.synthetic.main.activity_video.*
 
 
 class VideoActivity : AppCompatActivity() {
@@ -27,7 +27,7 @@ class VideoActivity : AppCompatActivity() {
         if (player == null) {
             player = SimpleExoPlayer.Builder(this).build()
             playerView.player = player
-            playerView.controllerAutoShow= true
+            playerView.controllerAutoShow = true
             val defaultHttpDataSourceFactory =
                 DefaultHttpDataSourceFactory(getString(R.string.app_name))
             val mediaSource = ProgressiveMediaSource.Factory(defaultHttpDataSourceFactory)

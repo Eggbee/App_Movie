@@ -1,20 +1,20 @@
 package com.example.app_movie.main.recommend
 
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import com.example.app_movie.Connect.Connecter
-import com.example.app_movie.main.model.ExampleModel
 import com.example.app_movie.R
+import com.example.app_movie.connect.Connecter
+import com.example.app_movie.main.model.ExampleModel
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.util.ArrayList
+import java.util.*
 
 class RecommendFragment : Fragment() {
     lateinit var recycler_recommend: RecyclerView

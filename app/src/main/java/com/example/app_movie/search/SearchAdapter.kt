@@ -1,40 +1,45 @@
-package com.example.app_movie.Category
+package com.example.app_movie.search
 
 import android.content.Context
-import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.example.app_movie.R
-import java.util.ArrayList
+import java.util.*
 
-class CategoryAdapter(internal var context: Context, internal var categoryModel: ArrayList<CategoryModel>) :
-    RecyclerView.Adapter<CategoryAdapter.ViewHolder>() {
+class SearchAdapter(
+    internal var context: Context,
+    internal var searchModel2s: ArrayList<com.example.app_movie.search.SearchModel2>
+) :
+    RecyclerView.Adapter<SearchAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, i: Int): ViewHolder {
-        val view = LayoutInflater.from(viewGroup.context).inflate(R.layout.item_movie, viewGroup, false)
+        val view =
+            LayoutInflater.from(viewGroup.context).inflate(R.layout.item_movie, viewGroup, false)
         return ViewHolder(view)
     }
 
     override fun onBindViewHolder(viewHolder: ViewHolder, i: Int) {
-        viewHolder.bind(categoryModel[i])
+        viewHolder.bind(searchModel2s[i])
     }
 
     override fun getItemCount(): Int {
-        return categoryModel.size
+        return searchModel2s.size
     }
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val text_movie = itemView.findViewById<TextView>(R.id.text_movie)
         var ic_movie = itemView.findViewById<ImageView>(R.id.ic_movie)
-        fun bind(categoryModel1: CategoryModel) {
-            text_movie?.text = categoryModel1.text_Movie
+        fun bind(searchmodel: SearchModel2) {
+            text_movie?.text = searchmodel.text_Movie
             if (ic_movie != null) {
-                Glide.with(itemView).load(categoryModel1.text_Image).apply(RequestOptions().override(150, 175))
+                Glide.with(itemView).load(searchmodel.text_Image)
+                    .apply(RequestOptions().override(150, 175))
                     .into(ic_movie)
             }
         }

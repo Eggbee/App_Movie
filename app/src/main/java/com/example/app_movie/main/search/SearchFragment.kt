@@ -2,25 +2,25 @@ package com.example.app_movie.main.search
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import com.example.app_movie.Category.CategoryActivity
 import com.example.app_movie.R
 import com.example.app_movie.RecyclerItemClickListener
-
-import java.util.ArrayList
+import com.example.app_movie.category.CategoryActivity
+import java.util.*
 
 class SearchFragment : Fragment() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInsrtanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInsrtanceState: Bundle?
+    ): View? {
         val layout = inflater.inflate(R.layout.fragment_search, container, false) as ViewGroup
         val recyclerView = layout.findViewById<View>(R.id.recycler_category) as RecyclerView
         val searchModels = ArrayList<SearchModel>()

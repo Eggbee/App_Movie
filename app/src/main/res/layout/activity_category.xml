@@ -6,7 +6,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/signin_edit_back"
-        tools:context=".Category.CategoryActivity">
+        tools:context=".category.CategoryActivity">
 <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_category"
         android:layout_width="match_parent"

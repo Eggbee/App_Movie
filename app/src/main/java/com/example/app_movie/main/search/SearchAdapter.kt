@@ -1,16 +1,18 @@
 package com.example.app_movie.main.search
 
 import android.content.Context
-import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.recyclerview.widget.RecyclerView
 import com.example.app_movie.R
+import java.util.*
 
-import java.util.ArrayList
-
-class SearchAdapter(internal var context: Context, internal var searchModels: ArrayList<SearchModel>) :
+class SearchAdapter(
+    internal var context: Context,
+    internal var searchModels: ArrayList<SearchModel>
+) :
     RecyclerView.Adapter<SearchAdapter.ViewHolder>() {
     internal var recycler_item: Int = 0
 
@@ -19,7 +21,8 @@ class SearchAdapter(internal var context: Context, internal var searchModels: Ar
     }
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, i: Int): ViewHolder {
-        val view = LayoutInflater.from(viewGroup.context).inflate(R.layout.item_category, viewGroup, false)
+        val view =
+            LayoutInflater.from(viewGroup.context).inflate(R.layout.item_category, viewGroup, false)
         return ViewHolder(view)
     }
 

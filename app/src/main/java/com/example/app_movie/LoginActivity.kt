@@ -1,15 +1,14 @@
 package com.example.app_movie
 
 import android.content.Intent
-import androidx.databinding.DataBindingUtil
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
 import androidx.viewpager.widget.ViewPager
-import com.example.app_movie.main.MainActivity
-import com.example.app_movie.Sign.SignActivity
 import com.example.app_movie.databinding.ActivityLoginBinding
+import com.example.app_movie.main.MainActivity
+import com.example.app_movie.sign.SignActivity
 import com.google.firebase.auth.FirebaseAuth
-import java.lang.Exception
 
 class LoginActivity : AppCompatActivity(), LoginNavigator {
     override fun intentSign() {
@@ -29,13 +28,13 @@ class LoginActivity : AppCompatActivity(), LoginNavigator {
             R.layout.activity_login
         )
 //        binding.login = LoginViewModel(this)
-        binding.login=LoginViewModel(this)
+        binding.login = LoginViewModel(this)
         val firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
         if (firebaseAuth.currentUser != null) {
             startActivity(Intent(this, MainActivity::class.java))
             finish()
         }
-        var num = 0;
+        var num = 0
         val viewPager = findViewById<ViewPager>(R.id.view_login)
         viewPager.adapter = LoginAdapter(supportFragmentManager)
         viewPager.currentItem = 0

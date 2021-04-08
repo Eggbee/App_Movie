@@ -1,12 +1,12 @@
 package com.example.app_movie
 
 import android.content.Intent
-import androidx.databinding.DataBindingUtil
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.EditText
-import com.example.app_movie.main.MainActivity
+import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
 import com.example.app_movie.databinding.ActivitySignInBinding
+import com.example.app_movie.main.MainActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
@@ -19,7 +19,7 @@ class SignInActivity : AppCompatActivity(), SigninNavigator {
     fun result(email: String, password: String) {
         val firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
         val firebaseDatabase: FirebaseDatabase = FirebaseDatabase.getInstance()
-        val database: DatabaseReference = firebaseDatabase.getReference()
+        val database: DatabaseReference = firebaseDatabase.reference
         firebaseAuth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {

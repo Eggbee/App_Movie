@@ -1,15 +1,13 @@
-package com.example.app_movie.Info
+package com.example.app_movie.info
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.ImageView
-import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.example.app_movie.R
-import com.example.app_movie.Video.VideoActivity
+import com.example.app_movie.video.VideoActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
@@ -20,7 +18,7 @@ class InfoActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_info)
-        val intent = getIntent()
+        val intent = intent
         val image = intent.extras?.getString("image")
         text_title.text = intent.extras?.getString("title")
         var num: Int = 0
@@ -32,7 +30,7 @@ class InfoActivity : AppCompatActivity() {
             } else {
                 val firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
                 val firebaseDatabase: FirebaseDatabase = FirebaseDatabase.getInstance()
-                val database: DatabaseReference = firebaseDatabase.getReference()
+                val database: DatabaseReference = firebaseDatabase.reference
                 val infoData = InfoData()
                 infoData.text_Image = image
                 infoData.text_Title = intent.extras?.getString("title")

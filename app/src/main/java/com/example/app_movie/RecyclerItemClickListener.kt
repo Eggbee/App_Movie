@@ -1,11 +1,11 @@
 package com.example.app_movie
 
 import android.content.Context
-import androidx.recyclerview.widget.RecyclerView
 import android.util.Log
 import android.view.GestureDetector
 import android.view.MotionEvent
 import android.view.View
+import androidx.recyclerview.widget.RecyclerView
 
 class RecyclerItemClickListener(
     context: Context,
@@ -22,19 +22,23 @@ class RecyclerItemClickListener(
     }
 
     init {
-        mGestureDetector = GestureDetector(context, object : GestureDetector.SimpleOnGestureListener() {
-            override fun onSingleTapUp(e: MotionEvent): Boolean {
-                return true
-            }
-
-            override fun onLongPress(e: MotionEvent) {
-                val child = recyclerView.findChildViewUnder(e.x, e.y)
-                if (child != null && mListener != null) {
-                    Log.d("long", "press")
-                    mListener.onLongItemClick(child, recyclerView.getChildAdapterPosition(child))
+        mGestureDetector =
+            GestureDetector(context, object : GestureDetector.SimpleOnGestureListener() {
+                override fun onSingleTapUp(e: MotionEvent): Boolean {
+                    return true
                 }
-            }
-        })
+
+                override fun onLongPress(e: MotionEvent) {
+                    val child = recyclerView.findChildViewUnder(e.x, e.y)
+                    if (child != null && mListener != null) {
+                        Log.d("long", "press")
+                        mListener.onLongItemClick(
+                            child,
+                            recyclerView.getChildAdapterPosition(child)
+                        )
+                    }
+                }
+            })
     }
 
     override fun onInterceptTouchEvent(view: RecyclerView, e: MotionEvent): Boolean {

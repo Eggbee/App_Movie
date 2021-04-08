@@ -1,23 +1,26 @@
 package com.example.app_movie.main.recommend
 
 import android.content.Context
-import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.example.app_movie.R
+import java.util.*
 
-import java.util.ArrayList
-
-class RecommendAdapter(internal var context: Context, internal var recommendModel: ArrayList<RecommendModel>) :
+class RecommendAdapter(
+    internal var context: Context,
+    internal var recommendModel: ArrayList<RecommendModel>
+) :
     RecyclerView.Adapter<RecommendAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, i: Int): ViewHolder {
-        val view = LayoutInflater.from(viewGroup.context).inflate(R.layout.item_recommend, viewGroup, false)
+        val view = LayoutInflater.from(viewGroup.context)
+            .inflate(R.layout.item_recommend, viewGroup, false)
         return ViewHolder(view)
     }
 
@@ -37,7 +40,8 @@ class RecommendAdapter(internal var context: Context, internal var recommendMode
             text_title?.text = recommendModel.text_title
             text_year?.text = recommendModel.text_year
             if (ic_movie != null) {
-                Glide.with(itemView).load(recommendModel.ic_image).apply(RequestOptions().override(150, 175))
+                Glide.with(itemView).load(recommendModel.ic_image)
+                    .apply(RequestOptions().override(150, 175))
                     .into(ic_movie)
             }
         }

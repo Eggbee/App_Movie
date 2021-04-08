@@ -13,17 +13,17 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
-        <activity android:name=".Category.CategoryActivity">
+        <activity android:name=".category.CategoryActivity">
         </activity>
-        <activity android:name=".Info.InfoActivity">
+        <activity android:name=".info.InfoActivity">
         </activity>
         <activity
-                android:name=".Search.SearchActivity"
+                android:name=".search.SearchActivity"
                 android:windowSoftInputMode="adjustUnspecified">
         </activity>
-        <activity android:name=".Video.VideoActivity">
+        <activity android:name=".video.VideoActivity">
         </activity>
-        <activity android:name=".Sign.SignActivity">
+        <activity android:name=".sign.SignActivity">
         </activity>
         <activity android:name=".SignInActivity">
         </activity>
