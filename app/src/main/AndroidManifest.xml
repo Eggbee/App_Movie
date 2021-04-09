@@ -21,8 +21,7 @@
                 android:name=".search.SearchActivity"
                 android:windowSoftInputMode="adjustUnspecified">
         </activity>
-        <activity android:name=".video.VideoActivity">
-        </activity>
+        <activity android:name=".video.VideoActivity"></activity>
         <activity android:name=".sign.SignActivity">
         </activity>
         <activity android:name=".SignInActivity">

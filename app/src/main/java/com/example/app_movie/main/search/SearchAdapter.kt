@@ -1,45 +1,32 @@
 package com.example.app_movie.main.search
 
-import android.content.Context
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.app_movie.R
+import com.example.app_movie.databinding.ItemCategoryBinding
+import com.example.app_movie.util.ClickEvent
 import java.util.*
 
-class SearchAdapter(
-    internal var context: Context,
-    internal var searchModels: ArrayList<SearchModel>
-) :
+class SearchAdapter(private val searchModel: List<String>,private val clickEvent: ClickEvent<Int>) :
     RecyclerView.Adapter<SearchAdapter.ViewHolder>() {
-    internal var recycler_item: Int = 0
-
-    init {
-        this.recycler_item = recycler_item
-    }
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, i: Int): ViewHolder {
         val view =
-            LayoutInflater.from(viewGroup.context).inflate(R.layout.item_category, viewGroup, false)
+            ItemCategoryBinding.inflate(LayoutInflater.from(viewGroup.context), viewGroup, false)
         return ViewHolder(view)
     }
 
     override fun onBindViewHolder(viewHolder: ViewHolder, i: Int) {
-        val searchModel = searchModels[i]
-        viewHolder.text_category.text = searchModel.text_categoty
+        viewHolder.bind(searchModel[i])
     }
 
-    override fun getItemCount(): Int {
-        return searchModels.size
-    }
+    override fun getItemCount(): Int = searchModel.size
 
-    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        var text_category: TextView
-
-        init {
-            text_category = itemView.findViewById(R.id.text_category)
+    inner class ViewHolder(val binding: ItemCategoryBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+        fun bind(value: String) {
+            binding.textCategory.text = value
+            binding.viewCategory.setOnClickListener { clickEvent.onClick(adapterPosition) }
         }
     }
 }

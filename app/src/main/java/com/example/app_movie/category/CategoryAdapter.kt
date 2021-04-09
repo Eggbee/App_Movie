@@ -1,26 +1,18 @@
 package com.example.app_movie.category
 
-import android.content.Context
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.bumptech.glide.request.RequestOptions
-import com.example.app_movie.R
+import com.example.app_movie.databinding.ItemMovieBinding
 import java.util.*
 
-class CategoryAdapter(
-    internal var context: Context,
-    internal var categoryModel: ArrayList<CategoryModel>
-) :
+class CategoryAdapter(private var categoryModel: ArrayList<CategoryModel>) :
     RecyclerView.Adapter<CategoryAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, i: Int): ViewHolder {
         val view =
-            LayoutInflater.from(viewGroup.context).inflate(R.layout.item_movie, viewGroup, false)
+            ItemMovieBinding.inflate(LayoutInflater.from(viewGroup.context), viewGroup, false)
         return ViewHolder(view)
     }
 
@@ -28,20 +20,13 @@ class CategoryAdapter(
         viewHolder.bind(categoryModel[i])
     }
 
-    override fun getItemCount(): Int {
-        return categoryModel.size
-    }
+    override fun getItemCount(): Int = categoryModel.size
 
-    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val text_movie = itemView.findViewById<TextView>(R.id.text_movie)
-        var ic_movie = itemView.findViewById<ImageView>(R.id.ic_movie)
-        fun bind(categoryModel1: CategoryModel) {
-            text_movie?.text = categoryModel1.text_Movie
-            if (ic_movie != null) {
-                Glide.with(itemView).load(categoryModel1.text_Image)
-                    .apply(RequestOptions().override(150, 175))
-                    .into(ic_movie)
-            }
+    inner class ViewHolder(private val binding: ItemMovieBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+        fun bind(value: CategoryModel) {
+            binding.textMovie.text = value.textMovie
+            Glide.with(binding.root).load(value.textImage).into(binding.icMovie)
         }
     }
 }

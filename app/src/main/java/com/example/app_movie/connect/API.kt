@@ -6,16 +6,16 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface API {
-    @GET("base")
+    @GET("/")
     fun getMovie(
         @Query("query") query: String,
         @Query("display") display: Int,
         @Query("start") start: Int
     ): Call<ExampleModel>
 
-    @GET("category")
-    fun getMovie_Category(
+    @GET("/v1/search/movie")
+    fun getMovieCategory(
         @Query("query") query: String,
-        @Query("category") category: Int
+        @Query("genre") category: Int
     ): Call<ExampleModel>
 }

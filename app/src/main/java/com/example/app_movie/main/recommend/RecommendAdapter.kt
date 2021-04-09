@@ -1,26 +1,20 @@
 package com.example.app_movie.main.recommend
 
-import android.content.Context
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.bumptech.glide.request.RequestOptions
-import com.example.app_movie.R
+import com.example.app_movie.databinding.ItemRecommendBinding
 import java.util.*
 
 class RecommendAdapter(
-    internal var context: Context,
-    internal var recommendModel: ArrayList<RecommendModel>
+    private val recommendModel: ArrayList<RecommendModel>
 ) :
     RecyclerView.Adapter<RecommendAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, i: Int): ViewHolder {
-        val view = LayoutInflater.from(viewGroup.context)
-            .inflate(R.layout.item_recommend, viewGroup, false)
+        val view =
+            ItemRecommendBinding.inflate(LayoutInflater.from(viewGroup.context), viewGroup, false)
         return ViewHolder(view)
     }
 
@@ -32,18 +26,12 @@ class RecommendAdapter(
         return recommendModel.size
     }
 
-    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val text_title = itemView.findViewById<TextView>(R.id.text_title)
-        val text_year = itemView.findViewById<TextView>(R.id.text_year)
-        val ic_movie = itemView.findViewById<ImageView>(R.id.ic_movie)
+    inner class ViewHolder(private val binding: ItemRecommendBinding) :
+        RecyclerView.ViewHolder(binding.root) {
         fun bind(recommendModel: RecommendModel) {
-            text_title?.text = recommendModel.text_title
-            text_year?.text = recommendModel.text_year
-            if (ic_movie != null) {
-                Glide.with(itemView).load(recommendModel.ic_image)
-                    .apply(RequestOptions().override(150, 175))
-                    .into(ic_movie)
-            }
+            binding.textTitle.text = recommendModel.textTitle
+            binding.textYear.text = recommendModel.textYear
+            Glide.with(binding.root).load(recommendModel.icImage).into(binding.icMovie)
         }
     }
 }

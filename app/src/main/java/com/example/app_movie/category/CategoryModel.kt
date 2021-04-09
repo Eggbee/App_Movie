@@ -1,3 +1,3 @@
 package com.example.app_movie.category
 
-class CategoryModel(var text_Movie: String, var text_Image: String)
+class CategoryModel(var textMovie: String, var textImage: String)

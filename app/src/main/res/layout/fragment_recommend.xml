@@ -35,6 +35,7 @@
             android:id="@+id/recycler_recommend"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintHeight_percent="0.91"
             app:layout_constraintTop_toBottomOf="@+id/constraintLayout6"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

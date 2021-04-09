@@ -12,11 +12,21 @@ object Connecter {
     init {
         val interceptor = HttpLoggingInterceptor()
         interceptor.level = HttpLoggingInterceptor.Level.BODY
-        val client = OkHttpClient.Builder().addInterceptor(interceptor).build()
+        val client = OkHttpClient.Builder()
+            .addInterceptor { chain ->
+                val request = chain.request()
+                    .newBuilder()
+                    .addHeader("X-Naver-Client-Id","w3Sm4xnRiqhOIpNHgOY0")
+                    .addHeader("X-Naver-Client-Secret","m4NT9Ij63u")
+                    .build()
+                return@addInterceptor chain.proceed(request)
+            }
+            .addInterceptor(interceptor)
+            .build()
 
         retrofit = Retrofit
             .Builder()
-            .baseUrl("http://10.0.2.2:5000/")
+            .baseUrl("https://openapi.naver.com/")
             .addConverterFactory(GsonConverterFactory.create())
             .client(client)
             .build()

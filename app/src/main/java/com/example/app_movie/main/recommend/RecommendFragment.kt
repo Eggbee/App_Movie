@@ -5,11 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.DividerItemDecoration
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.example.app_movie.R
 import com.example.app_movie.connect.Connecter
+import com.example.app_movie.databinding.FragmentRecommendBinding
 import com.example.app_movie.main.model.ExampleModel
 import retrofit2.Call
 import retrofit2.Callback
@@ -17,56 +14,38 @@ import retrofit2.Response
 import java.util.*
 
 class RecommendFragment : Fragment() {
-    lateinit var recycler_recommend: RecyclerView
+
+    private var _binding: FragmentRecommendBinding? = null
+    private val binding get() = _binding
+
     val recommendModel = ArrayList<RecommendModel>()
-    lateinit var movie_title: String
-    lateinit var movie_image: String
-    lateinit var movie_year: String
-    lateinit var exampleModellist: ExampleModel
-    lateinit var recommendAdapter: RecommendAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val layout = inflater.inflate(R.layout.fragment_recommend, container, false) as ViewGroup
-        recycler_recommend = layout.findViewById<View>(R.id.recycler_recommend) as RecyclerView
-        recycler_recommend.setHasFixedSize(true)
-        recommendAdapter = RecommendAdapter(activity!!, recommendModel)
-        recycler_recommend.layoutManager =
-            LinearLayoutManager(context)
-        val dividerItemDecoration =
-            DividerItemDecoration(
-                context!!,
-                LinearLayoutManager(context).orientation
-            )
-        recycler_recommend.addItemDecoration(dividerItemDecoration)
-        recycler_recommend.adapter = recommendAdapter
-        if (recommendModel.size == 0) {
-            getMovie("t")
+        if (_binding == null) {
+            _binding = FragmentRecommendBinding.inflate(inflater, container, false)
+            getMovie()
         }
-        return layout
+        return binding?.root
     }
 
-    fun getMovie(name: String) {
+    private fun getMovie() {
         val retrofit = Connecter.createApi()
-        val call = retrofit.getMovie(name, 10, 1)
+        val call = retrofit.getMovie("t", 10, 1)
         call.enqueue(object : Callback<ExampleModel> {
             override fun onResponse(call: Call<ExampleModel>, response: Response<ExampleModel>) {
-                exampleModellist = response.body()!!
-                for (i in 0 until exampleModellist.items!!.size) {
-                    movie_title = exampleModellist.items!!.get(i).title!!
-                    movie_year = exampleModellist.items!!.get(i).pubDate!!
-                    movie_image = exampleModellist.items!!.get(i).image!!
+                response.body()?.items?.forEach {
                     recommendModel.add(
                         RecommendModel(
-                            movie_title,
-                            movie_year,
-                            movie_image
+                            it.title ?: "",
+                            it.pubDate ?: "",
+                            it.image ?: ""
                         )
                     )
                 }
-                recycler_recommend.adapter = recommendAdapter
+                binding?.recyclerRecommend?.adapter = RecommendAdapter(recommendModel)
             }
 
             override fun onFailure(call: Call<ExampleModel>, t: Throwable) {

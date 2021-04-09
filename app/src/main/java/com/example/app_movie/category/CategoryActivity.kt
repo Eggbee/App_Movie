@@ -2,6 +2,7 @@ package com.example.app_movie.category
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
@@ -9,71 +10,43 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.app_movie.R
 import com.example.app_movie.RecyclerItemClickListener
 import com.example.app_movie.connect.Connecter
+import com.example.app_movie.databinding.ActivityCategoryBinding
 import com.example.app_movie.info.InfoActivity
 import com.example.app_movie.main.model.ExampleModel
+import com.google.gson.JsonObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.util.*
 
 class CategoryActivity : AppCompatActivity() {
-    lateinit var exampleModellist: ExampleModel
-    var categoryModel = ArrayList<CategoryModel>()
-    lateinit var recycler_category: RecyclerView
-    lateinit var movie_title: String
-    lateinit var movie_image: String
-    lateinit var categoryAdapter: CategoryAdapter
+
+    private val binding : ActivityCategoryBinding by lazy {
+        ActivityCategoryBinding.inflate(layoutInflater)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_category)
+        setContentView(binding.root)
         val intent = intent
-        val category = intent.extras?.getInt("position")
-        recycler_category = findViewById(com.example.app_movie.R.id.recycler_category)
-        categoryAdapter = CategoryAdapter(applicationContext, categoryModel)
-        recycler_category.layoutManager =
-            GridLayoutManager(applicationContext, 2)
-        recycler_category.adapter = categoryAdapter
-        if (category != null) {
-            getMovie_Category("a", category + 1)
-        }
-        recycler_category.addOnItemTouchListener(
-            RecyclerItemClickListener(
-                applicationContext,
-                recycler_category,
-                object : RecyclerItemClickListener.OnItemClickListener {
-                    override fun onItemClick(view: View, position: Int) {
-                        val intent = Intent(applicationContext, InfoActivity::class.java)
-                        intent.putExtra("image", exampleModellist.items!!.get(position).image)
-                        intent.putExtra("title", exampleModellist.items!!.get(position).title)
-                        intent.putExtra("rating", exampleModellist.items!!.get(position).userRating)
-                        intent.putExtra("director", exampleModellist.items!!.get(position).director)
-                        startActivity(intent)
-                    }
-
-                    override fun onLongItemClick(view: View?, position: Int) {
-
-                    }
-                })
-        )
+        val category = intent.getIntExtra("position",0)
+        getMovieCategory(category + 1)
     }
 
-    fun getMovie_Category(name: String, category: Int) {
-        val retrofit = Connecter.createApi()
-        val call = retrofit.getMovie_Category(name, category)
+    private fun getMovieCategory(category: Int) {
+        val retrofit = Connecter.api
+        val call = retrofit.getMovieCategory("a", category)
         call.enqueue(object : Callback<ExampleModel> {
             override fun onResponse(call: Call<ExampleModel>, response: Response<ExampleModel>) {
-                exampleModellist = response.body()!!
-                for (i in 0 until exampleModellist.items!!.size) {
-                    movie_title = exampleModellist.items!!.get(i).title!!
-                    movie_image = exampleModellist.items!!.get(i).image!!
-                    categoryModel.add(CategoryModel(movie_title, movie_image))
+                val value = arrayListOf<CategoryModel>()
+                response.body()?.items?.forEach {
+                    value.add(CategoryModel(it.title ?: "",it.image ?: ""))
                 }
-                recycler_category.adapter = categoryAdapter
+                binding.recyclerCategory.adapter = CategoryAdapter(value)
             }
 
             override fun onFailure(call: Call<ExampleModel>, t: Throwable) {
-
+                Log.e("asdfTest",t.toString())
             }
         })
     }
