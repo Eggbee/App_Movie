@@ -4,7 +4,9 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.app_movie.R
 import com.example.app_movie.databinding.ItemMovieBinding
+import kotlinx.android.synthetic.main.item_movie.*
 import java.util.*
 
 class CategoryAdapter(private var categoryModel: ArrayList<CategoryModel>) :
@@ -26,7 +28,7 @@ class CategoryAdapter(private var categoryModel: ArrayList<CategoryModel>) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(value: CategoryModel) {
             binding.textMovie.text = value.textMovie
-            Glide.with(binding.root).load(value.textImage).into(binding.icMovie)
+            Glide.with(binding.root).load(value.textImage).error(R.drawable.icon).into(binding.icMovie)
         }
     }
 }

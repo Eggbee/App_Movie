@@ -6,7 +6,7 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface API {
-    @GET("/")
+    @GET("/v1/search/movie")
     fun getMovie(
         @Query("query") query: String,
         @Query("display") display: Int,

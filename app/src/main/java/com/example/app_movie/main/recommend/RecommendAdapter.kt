@@ -1,5 +1,6 @@
 package com.example.app_movie.main.recommend
 
+import android.text.Html
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -29,7 +30,7 @@ class RecommendAdapter(
     inner class ViewHolder(private val binding: ItemRecommendBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(recommendModel: RecommendModel) {
-            binding.textTitle.text = recommendModel.textTitle
+            binding.textTitle.text = Html.fromHtml(recommendModel.textTitle).toString()
             binding.textYear.text = recommendModel.textYear
             Glide.with(binding.root).load(recommendModel.icImage).into(binding.icMovie)
         }
