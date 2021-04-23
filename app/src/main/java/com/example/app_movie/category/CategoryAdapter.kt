@@ -1,15 +1,19 @@
 package com.example.app_movie.category
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.app_movie.R
 import com.example.app_movie.databinding.ItemMovieBinding
-import kotlinx.android.synthetic.main.item_movie.*
+import com.example.app_movie.util.ClickEvent
 import java.util.*
 
-class CategoryAdapter(private var categoryModel: ArrayList<CategoryModel>) :
+class CategoryAdapter(
+    private var categoryModel: ArrayList<CategoryModel>,
+    private val clickEvent: ClickEvent<Pair<CategoryModel, View>>
+) :
     RecyclerView.Adapter<CategoryAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, i: Int): ViewHolder {
@@ -28,7 +32,11 @@ class CategoryAdapter(private var categoryModel: ArrayList<CategoryModel>) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(value: CategoryModel) {
             binding.textMovie.text = value.textMovie
-            Glide.with(binding.root).load(value.textImage).error(R.drawable.icon).into(binding.icMovie)
+            Glide.with(binding.root).load(value.textImage).error(R.drawable.icon)
+                .into(binding.icMovie)
+            binding.viewMovie.setOnClickListener {
+                clickEvent.onClick(Pair(value, binding.root))
+            }
         }
     }
 }

@@ -2,26 +2,24 @@ package com.example.app_movie.category
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.example.app_movie.R
-import com.example.app_movie.RecyclerItemClickListener
+import androidx.core.app.ActivityOptionsCompat
 import com.example.app_movie.connect.Connecter
 import com.example.app_movie.databinding.ActivityCategoryBinding
 import com.example.app_movie.info.InfoActivity
 import com.example.app_movie.main.model.ExampleModel
-import com.google.gson.JsonObject
+import com.example.app_movie.util.ClickEvent
+import com.google.gson.Gson
+import kotlinx.android.synthetic.main.item_movie.view.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.util.*
+import androidx.core.util.Pair as UtilPair
 
-class CategoryActivity : AppCompatActivity() {
+class CategoryActivity : AppCompatActivity(), ClickEvent<Pair<CategoryModel, View>> {
 
-    private val binding : ActivityCategoryBinding by lazy {
+    private val binding: ActivityCategoryBinding by lazy {
         ActivityCategoryBinding.inflate(layoutInflater)
     }
 
@@ -29,7 +27,7 @@ class CategoryActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         val intent = intent
-        val category = intent.getIntExtra("position",0)
+        val category = intent.getIntExtra("position", 0)
         getMovieCategory(category + 1)
     }
 
@@ -40,15 +38,29 @@ class CategoryActivity : AppCompatActivity() {
             override fun onResponse(call: Call<ExampleModel>, response: Response<ExampleModel>) {
                 val value = arrayListOf<CategoryModel>()
                 response.body()?.items?.forEach {
-                    value.add(CategoryModel(it.title ?: "",it.image ?: ""))
+                    value.add(CategoryModel(it.title ?: "", it.image ?: ""))
                 }
-                binding.recyclerCategory.adapter = CategoryAdapter(value)
+                binding.recyclerCategory.adapter = CategoryAdapter(value, this@CategoryActivity)
             }
 
             override fun onFailure(call: Call<ExampleModel>, t: Throwable) {
-                Log.e("asdfTest",t.toString())
             }
         })
+    }
+
+    override fun onClick(value: Pair<CategoryModel, View>) {
+        val options = ActivityOptionsCompat.makeSceneTransitionAnimation(
+            this,
+            UtilPair.create(value.second.ic_movie as View, value.second.ic_movie.transitionName),
+            UtilPair.create(
+                value.second.text_movie as View,
+                value.second.text_movie.transitionName
+            )
+        )
+
+        val intent =
+            Intent(this, InfoActivity::class.java).putExtra("movieInfo", Gson().toJson(value.first))
+        startActivity(intent, options.toBundle())
     }
 
 }

@@ -2,42 +2,29 @@ package com.example.app_movie.info
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
-import com.bumptech.glide.request.RequestOptions
-import com.example.app_movie.R
+import com.example.app_movie.category.CategoryModel
+import com.example.app_movie.databinding.ActivityInfoBinding
 import com.example.app_movie.video.VideoActivity
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
+import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_info.*
 
 class InfoActivity : AppCompatActivity() {
 
+    private val movieInfoModel: CategoryModel by lazy {
+        Gson().fromJson(intent.getStringExtra("movieInfo"), CategoryModel::class.java)
+    }
+
+    private val infoViewBinding: ActivityInfoBinding by lazy {
+        ActivityInfoBinding.inflate(layoutInflater)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_info)
-        val intent = intent
-        val image = intent.extras?.getString("image")
-        text_title.text = intent.extras?.getString("title")
-        var num: Int = 0
-        Glide.with(this).load(image).apply(RequestOptions().override(150, 175)).into(ic_movie)
+        setContentView(infoViewBinding.root)
+        infoViewBinding.textTitle.text = movieInfoModel.textMovie
+        Glide.with(this).load(movieInfoModel.textImage).into(infoViewBinding.icMovie)
         ic_video.setOnClickListener { startActivity(Intent(this, VideoActivity::class.java)) }
-        ic_favorite.setOnClickListener {
-            if (num == 1) {
-                Toast.makeText(applicationContext, "두번 누르시면 안됩니다.", Toast.LENGTH_SHORT).show()
-            } else {
-                val firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
-                val firebaseDatabase: FirebaseDatabase = FirebaseDatabase.getInstance()
-                val database: DatabaseReference = firebaseDatabase.reference
-                val infoData = InfoData()
-                infoData.text_Image = image
-                infoData.text_Title = intent.extras?.getString("title")
-                database.child(firebaseAuth.uid.toString()).child("like").push().setValue(infoData)
-                ic_favorite.setImageResource(R.drawable.ic_favorite_black_24dp)
-                num = 1
-            }
-        }
     }
 }
