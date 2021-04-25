@@ -3,36 +3,29 @@ package com.example.app_movie.main.model
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
-class ItemModel {
+data class ItemModel(
     @SerializedName("title")
-    @Expose
-    var title: String? = null
+    var title: String,
 
     @SerializedName("link")
-    @Expose
-    var link: String? = null
+    var link: String,
 
     @SerializedName("image")
-    @Expose
-    var image: String? = null
+    var image: String,
 
     @SerializedName("subtitle")
-    @Expose
-    var subtitle: String? = null
+    var subtitle: String,
 
     @SerializedName("pubDate")
-    @Expose
-    var pubDate: String? = null
+    var pubDate: String,
 
     @SerializedName("director")
     @Expose
-    var director: String? = null
+    var director: String,
 
     @SerializedName("actor")
-    @Expose
-    var actor: String? = null
+    var actor: String,
 
     @SerializedName("userRating")
-    @Expose
-    var userRating: String? = null
-}
+    var userRating: String
+)

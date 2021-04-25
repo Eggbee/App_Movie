@@ -16,8 +16,8 @@ object Connecter {
             .addInterceptor { chain ->
                 val request = chain.request()
                     .newBuilder()
-                    .addHeader("X-Naver-Client-Id","w3Sm4xnRiqhOIpNHgOY0")
-                    .addHeader("X-Naver-Client-Secret","m4NT9Ij63u")
+                    .addHeader("X-Naver-Client-Id", "w3Sm4xnRiqhOIpNHgOY0")
+                    .addHeader("X-Naver-Client-Secret", "m4NT9Ij63u")
                     .build()
                 return@addInterceptor chain.proceed(request)
             }
