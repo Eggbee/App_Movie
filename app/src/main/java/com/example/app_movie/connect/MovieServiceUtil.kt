@@ -33,4 +33,10 @@ interface MovieServiceUtil {
         @Query("language") language: String = "ko",
         @Query("page") page: Int
     ): Single<BaseResponse<MovieModel>>
+
+    @GET("search/multi")
+    fun searchMovie(
+        @Query("language") language: String = "ko",
+        @Query("query") query: String
+    ): Single<BaseResponse<MovieModel>>
 }

@@ -1,116 +1,68 @@
 package com.example.app_movie.search
 
-import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.example.app_movie.RecyclerItemClickListener
-import com.example.app_movie.connect.Connecter
-import com.example.app_movie.info.InfoActivity
-import com.example.app_movie.main.MainActivity
-import com.example.app_movie.main.model.ExampleModel
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
-import kotlinx.android.synthetic.main.activity_search.*
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import java.util.*
+import com.example.app_movie.connect.MovieServiceUtil
+import com.example.app_movie.databinding.ActivitySearchBinding
+import com.jakewharton.rxbinding3.widget.textChanges
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.disposables.Disposable
+import io.reactivex.rxkotlin.addTo
+import io.reactivex.schedulers.Schedulers
+import org.koin.android.ext.android.inject
+import java.util.concurrent.TimeUnit
 
 class SearchActivity : AppCompatActivity() {
-    lateinit var recycler_search: RecyclerView
-    var searchModel = ArrayList<SearchModel2>()
-    lateinit var movie_title: String
-    lateinit var movie_image: String
-    lateinit var exampleModellist: ExampleModel
-    lateinit var searchAdapter: SearchAdapter
-    val firebaseDatabase: FirebaseDatabase = FirebaseDatabase.getInstance()
-    val database: DatabaseReference = firebaseDatabase.reference
-    var start_num = 1
+
+    private val binding: ActivitySearchBinding by lazy {
+        ActivitySearchBinding.inflate(layoutInflater)
+    }
+
+    private var searchObservable: Disposable? = null
+    private val compositeDisposable = CompositeDisposable()
+    private val movieServiceUtil: MovieServiceUtil by inject()
+    private val searchAdapter = SearchAdapter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(com.example.app_movie.R.layout.activity_search)
+        setContentView(binding.root)
         window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN)
-        recycler_search = findViewById(com.example.app_movie.R.id.recycler_search)
-        searchAdapter = SearchAdapter(applicationContext, searchModel)
-        recycler_search.layoutManager = GridLayoutManager(
-            applicationContext,
-            2
-        )
-        recycler_search.adapter = searchAdapter
-        edit_search.setOnClickListener {
-            text_movie.visibility = View.INVISIBLE
-            ic_movie.visibility = View.INVISIBLE
-            searchModel.clear()
-            start_num = 1
-            get_movie(edit_search.text.toString(), 1)
-        }
+        binding.recyclerSearch.adapter = searchAdapter
 
-        recycler_search.addOnItemTouchListener(
-            RecyclerItemClickListener(
-                applicationContext,
-                recycler_search,
-                object : RecyclerItemClickListener.OnItemClickListener {
-                    override fun onItemClick(view: View, position: Int) {
-                        val intent = Intent(applicationContext, InfoActivity::class.java)
-                        intent.putExtra("image", exampleModellist.items!!.get(position).image)
-                        intent.putExtra("title", exampleModellist.items!!.get(position).title)
-                        intent.putExtra("rating", exampleModellist.items!!.get(position).userRating)
-                        intent.putExtra("director", exampleModellist.items!!.get(position).director)
-                        startActivity(intent)
-                    }
-
-                    override fun onLongItemClick(view: View?, position: Int) {
-
-                    }
-                })
-        )
-
-        recycler_search.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-                super.onScrolled(recyclerView, dx, dy)
-                if (!recycler_search.canScrollVertically(1)) {
-                    start_num = start_num + 10
-                    get_movie(edit_search.text.toString(), start_num)
-                    searchAdapter.notifyDataSetChanged()
-                }
-            }
-
-        })
+        setSearchEvent()
     }
 
-    fun get_movie(name: String, num: Int) {
-        val retrofit = Connecter.createApi()
-        val call = retrofit.getMovie(name, 10, num)
-        call.enqueue(object : Callback<ExampleModel> {
-            override fun onResponse(call: Call<ExampleModel>, response: Response<ExampleModel>) {
-                exampleModellist = response.body()!!
-                if (exampleModellist.items!!.size == 0) {
-                    text_movie.visibility = View.VISIBLE
-                    ic_movie.visibility = View.VISIBLE
-                    database.child("data").child(name).push().setValue(name)
-                }
-                for (i in 0 until exampleModellist.items!!.size) {
-                    movie_title = exampleModellist.items!!.get(i).title!!
-                    movie_image = exampleModellist.items!!.get(i).image!!
-                    searchModel.add(SearchModel2(movie_title, movie_image))
-                }
-                recycler_search.adapter = searchAdapter
+    private fun setSearchEvent() {
+        searchObservable = binding.editSearch.textChanges()
+            .throttleLast(500, TimeUnit.MILLISECONDS)
+            .observeOn(Schedulers.computation())
+            .subscribe{
+                if(it.isNotEmpty()) getMovie(it.toString())
             }
-
-            override fun onFailure(call: Call<ExampleModel>, t: Throwable) {
-
-            }
-        })
     }
 
-    override fun onBackPressed() {
-        super.onBackPressed()
-        startActivity(Intent(this, MainActivity::class.java))
-        finish()
+    private fun getMovie(query : String){
+        movieServiceUtil.searchMovie(query = query)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({
+                if(it.results?.isNullOrEmpty() == true) return@subscribe
+                else{
+                    binding.icMovie.visibility = View.GONE
+                    binding.textMovie.visibility = View.GONE
+                    searchAdapter.remove()
+                    searchAdapter.addItem(it.results)
+                }
+            },{}).addTo(compositeDisposable)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        searchObservable?.dispose()
+        compositeDisposable.dispose()
     }
 }

@@ -20,10 +20,9 @@ import io.reactivex.rxkotlin.addTo
 import io.reactivex.schedulers.Schedulers
 import org.koin.android.ext.android.inject
 import java.util.*
-import kotlin.collections.ArrayList
 
 
-class MovieFragment : Fragment(),ClickEvent<Pair<ItemPopularMovieInfoBinding,MovieModel>> {
+class MovieFragment : Fragment(), ClickEvent<Pair<ItemPopularMovieInfoBinding, MovieModel>> {
 
     private var _binidng: FragmentMovieBinding? = null
     private val binding get() = _binidng
@@ -31,7 +30,7 @@ class MovieFragment : Fragment(),ClickEvent<Pair<ItemPopularMovieInfoBinding,Mov
     private val movieServiceUtil: MovieServiceUtil by inject()
     private val compositeDisposable = CompositeDisposable()
 
-    private val movieTitle =  listOf("최고 인기작","개봉 예정작","최고 평점작","현재 상영작")
+    private val movieTitle = listOf("최고 인기작", "개봉 예정작", "최고 평점작", "현재 상영작")
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -45,33 +44,33 @@ class MovieFragment : Fragment(),ClickEvent<Pair<ItemPopularMovieInfoBinding,Mov
     }
 
     private fun getPopularMovieInfo() {
-        val data = arrayListOf<Pair<String,ArrayList<MovieModel>>>()
+        val data = arrayListOf<Pair<String, ArrayList<MovieModel>>>()
 
-        Flowable.rangeLong(0,4)
-            .flatMap { getMovieInfo(it.toInt()).second.toFlowable() }
+        Flowable.rangeLong(0, 4)
+            .flatMap { getMovieInfo(it.toInt()).toFlowable() }
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
                 val title = movieTitle.get(data.size)
-                data.add(Pair(title,it.results ?: arrayListOf()))
-                if(data.size > 3) binding?.viewMovieInfo?.adapter = MovieAdapter(data,this)
-            },{
-                Log.e("asdfError",it.toString())
+                data.add(Pair(title, it.results ?: arrayListOf()))
+                if (data.size > 3) binding?.viewMovieInfo?.adapter = MovieAdapter(data, this)
+            }, {
+                Log.e("asdfError", it.toString())
             }).addTo(compositeDisposable)
     }
 
-    private fun getMovieInfo(index : Int): Pair<String, Single<BaseResponse<MovieModel>>> {
-        return when(index){
-            0 -> Pair("최고 인기작",movieServiceUtil.getPopularMovieInfo(page = rand(1,10)))
-            1 -> Pair("개봉 예정작",movieServiceUtil.getUpComingMovie(page = rand(1,10)))
-            2 -> Pair("최고 평점작",movieServiceUtil.getTopRatedMovie(page = rand(1,10)))
-            else -> Pair("현재 상영작",movieServiceUtil.getNowPlayingMovie(page = rand(1,10)))
+    private fun getMovieInfo(index: Int): Single<BaseResponse<MovieModel>> {
+        return when (index) {
+            0 -> movieServiceUtil.getPopularMovieInfo(page = rand())
+            1 -> movieServiceUtil.getUpComingMovie(page = rand())
+            2 -> movieServiceUtil.getTopRatedMovie(page = rand())
+            else -> movieServiceUtil.getNowPlayingMovie(page = rand())
         }
     }
 
-    fun rand(from: Int, to: Int) : Int {
+    private fun rand(): Int {
         val page = Random()
-        return page.nextInt(to - from) + from
+        return page.nextInt(10 - 1) + 1
     }
 
     override fun onDestroy() {
@@ -80,6 +79,6 @@ class MovieFragment : Fragment(),ClickEvent<Pair<ItemPopularMovieInfoBinding,Mov
     }
 
     override fun onClick(value: Pair<ItemPopularMovieInfoBinding, MovieModel>) {
-        Log.e("asdfMovie",value.second.toString())
+        Log.e("asdfMovie", value.second.toString())
     }
 }

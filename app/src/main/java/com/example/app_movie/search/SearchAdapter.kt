@@ -1,47 +1,49 @@
 package com.example.app_movie.search
 
-import android.content.Context
+import android.graphics.Movie
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.bumptech.glide.request.RequestOptions
 import com.example.app_movie.R
-import java.util.*
+import com.example.app_movie.databinding.ItemMovieSearchBinding
+import com.example.app_movie.main.model.MovieModel
 
-class SearchAdapter(
-    internal var context: Context,
-    internal var searchModel2s: ArrayList<com.example.app_movie.search.SearchModel2>
-) :
-    RecyclerView.Adapter<SearchAdapter.ViewHolder>() {
+class SearchAdapter() : RecyclerView.Adapter<SearchAdapter.ViewHolder>() {
+
+    val data = arrayListOf<MovieModel>()
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, i: Int): ViewHolder {
         val view =
-            LayoutInflater.from(viewGroup.context).inflate(R.layout.item_movie, viewGroup, false)
+            ItemMovieSearchBinding.inflate(LayoutInflater.from(viewGroup.context), viewGroup, false)
         return ViewHolder(view)
     }
 
     override fun onBindViewHolder(viewHolder: ViewHolder, i: Int) {
-        viewHolder.bind(searchModel2s[i])
+        viewHolder.bind(data[i])
     }
 
     override fun getItemCount(): Int {
-        return searchModel2s.size
+        return data.size
     }
 
-    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val text_movie = itemView.findViewById<TextView>(R.id.text_movie)
-        var ic_movie = itemView.findViewById<ImageView>(R.id.ic_movie)
-        fun bind(searchmodel: SearchModel2) {
-            text_movie?.text = searchmodel.text_Movie
-            if (ic_movie != null) {
-                Glide.with(itemView).load(searchmodel.text_Image)
-                    .apply(RequestOptions().override(150, 175))
-                    .into(ic_movie)
-            }
+    fun addItem(value: ArrayList<MovieModel>){
+        data.addAll(value)
+        notifyDataSetChanged()
+    }
+
+    fun remove(){
+        data.clear()
+        notifyDataSetChanged()
+    }
+
+    inner class ViewHolder(private val binding: ItemMovieSearchBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+        fun bind(value: MovieModel) {
+            binding.textMovie.text = value.title
+            Glide.with(binding.root).load("https://image.tmdb.org/t/p/w342${value.posterPath}")
+                .error(R.drawable.icon)
+                .into(binding.icMovie)
         }
     }
 }

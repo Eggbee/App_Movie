@@ -1,87 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-
-<androidx.constraintlayout.widget.ConstraintLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".search.SearchActivity"
-        android:background="@color/signin_edit_back">
+        android:background="@color/signin_edit_back"
+        tools:context=".search.SearchActivity">
 
     <EditText
+            android:id="@+id/edit_search"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            app:layout_constraintHeight_percent="0.06"
-            app:layout_constraintStart_toStartOf="parent"
             android:layout_marginStart="16dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginEnd="16dp"
-            app:layout_constraintHorizontal_bias="0.0"
             android:layout_marginTop="8dp"
-            android:maxLines="1"
-            android:inputType="text"
-            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginEnd="16dp"
             android:background="@drawable/back_search"
+            android:hint="제목 검색"
+            android:inputType="text"
+            android:maxLines="1"
             android:padding="10dp"
-            android:textSize="15sp"
             android:textColor="@color/signin_edit_text"
             android:textColorHint="@color/signin_edit_text"
-            android:hint="영화 제목 검색"
-            android:id="@+id/edit_search"/>
-
-    <ImageView
-            android:id="@+id/ic_search"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_search_black_24dp"
-            app:layout_constraintEnd_toEndOf="@+id/edit_search"
-            android:layout_marginBottom="8dp"
-            app:layout_constraintBottom_toBottomOf="@+id/edit_search"
-            android:layout_marginTop="8dp"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.666"
-            app:layout_constraintStart_toStartOf="@+id/edit_search"
-            app:layout_constraintHorizontal_bias="0.952"/>
+            android:textSize="17dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_percent="0.06"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_search"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            app:layout_constraintHeight_percent="0.87"
+            android:layout_marginTop="12dp"
             android:foregroundGravity="center"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/edit_search"
-            tools:layout_editor_absoluteX="0dp"
-            android:layout_marginBottom="8dp"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            app:spanCount="2"
+            tools:listitem="@layout/item_movie_search" />
 
     <ImageView
             android:id="@+id/ic_movie"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
             android:src="@drawable/ic_movie_black_24dp"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="@+id/recycler_search"
             app:layout_constraintEnd_toEndOf="@+id/recycler_search"
             app:layout_constraintStart_toStartOf="@+id/recycler_search"
-            android:visibility="visible"
-            android:layout_marginLeft="8dp"
-            android:layout_marginStart="8dp"
-            app:layout_constraintBottom_toBottomOf="@+id/recycler_search"
-            app:layout_constraintTop_toTopOf="@+id/recycler_search"/>
+            app:layout_constraintTop_toTopOf="@+id/recycler_search" />
 
     <TextView
             android:id="@+id/text_movie"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="찾으시는 영화가 없네요ㅜㅜㅜㅜ"
-            android:textSize="20sp"
-            android:textColor="@android:color/white"
-            app:layout_constraintTop_toBottomOf="@+id/ic_movie"
-            android:visibility="visible"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
+            android:text="찾으시는 영화가 없습니다."
+            android:textColor="@android:color/white"
+            android:textSize="16dp"
+            android:visibility="visible"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginLeft="8dp"
-            android:layout_marginStart="8dp"/>
+            app:layout_constraintTop_toBottomOf="@+id/ic_movie" />
 </androidx.constraintlayout.widget.ConstraintLayout>
