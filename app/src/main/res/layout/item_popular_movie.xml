@@ -31,6 +31,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@id/text_movie_title"
-            app:layout_constraintTop_toBottomOf="@id/text_movie_title" />
+            app:layout_constraintTop_toBottomOf="@id/text_movie_title"
+            tools:listitem="@layout/item_popular_movie_info"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

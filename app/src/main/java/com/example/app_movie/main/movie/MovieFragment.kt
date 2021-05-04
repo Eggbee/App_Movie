@@ -1,5 +1,6 @@
 package com.example.app_movie.main.movie
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -9,6 +10,7 @@ import androidx.fragment.app.Fragment
 import com.example.app_movie.connect.MovieServiceUtil
 import com.example.app_movie.databinding.FragmentMovieBinding
 import com.example.app_movie.databinding.ItemPopularMovieInfoBinding
+import com.example.app_movie.info.InfoActivity
 import com.example.app_movie.main.model.BaseResponse
 import com.example.app_movie.main.model.MovieModel
 import com.example.app_movie.util.ClickEvent
@@ -79,6 +81,6 @@ class MovieFragment : Fragment(), ClickEvent<Pair<ItemPopularMovieInfoBinding, M
     }
 
     override fun onClick(value: Pair<ItemPopularMovieInfoBinding, MovieModel>) {
-        Log.e("asdfMovie", value.second.toString())
+        startActivity(Intent(activity,InfoActivity::class.java).putExtra("id",value.second.id))
     }
 }

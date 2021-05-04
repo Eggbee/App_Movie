@@ -1,9 +1,12 @@
 package com.example.app_movie.connect
 
 import com.example.app_movie.main.model.BaseResponse
+import com.example.app_movie.main.model.MovieDetailModel
 import com.example.app_movie.main.model.MovieModel
+import com.google.gson.JsonObject
 import io.reactivex.Single
 import retrofit2.http.GET
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface MovieServiceUtil {
@@ -39,4 +42,16 @@ interface MovieServiceUtil {
         @Query("language") language: String = "ko",
         @Query("query") query: String
     ): Single<BaseResponse<MovieModel>>
+
+    @GET("movie/{movie_id}")
+    fun getMovieDetail(
+        @Path("movie_id") movieId : Int,
+        @Query("language") language: String = "ko"
+    ): Single<MovieDetailModel>
+
+    @GET("movie/{movie_id}/videos")
+    fun getVideoInfo(
+        @Path("movie_id") movieId : Int,
+        @Query("language") language: String = "ko"
+    ): Single<BaseResponse<JsonObject>>
 }

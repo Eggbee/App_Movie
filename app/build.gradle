@@ -59,6 +59,7 @@ dependencies {
     implementation 'com.google.android.exoplayer:exoplayer-core:2.8.1'
     implementation 'com.google.android.exoplayer:exoplayer-ui:2.8.1'
     implementation 'com.google.android.exoplayer:extension-ima:2.8.1'
+    implementation 'com.google.android.exoplayer:exoplayer:2.13.3'
     implementation 'com.github.rubensousa:previewseekbar-exoplayer:2.11.4.0'
     //firebase
     implementation 'com.google.firebase:firebase-core:17.4.4'
@@ -84,5 +85,6 @@ dependencies {
     implementation "org.koin:koin-androidx-scope:2.0.1"
     implementation "org.koin:koin-androidx-viewmodel:2.0.1"
     implementation "org.koin:koin-androidx-ext:2.0.1"
+    implementation 'com.github.HaarigerHarald:android-youtubeExtractor:v2.0.0'
 }
 apply plugin: 'com.google.gms.google-services'

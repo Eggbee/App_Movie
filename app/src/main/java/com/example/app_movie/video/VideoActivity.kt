@@ -1,51 +1,75 @@
 package com.example.app_movie.video
 
+import android.annotation.SuppressLint
 import android.content.pm.ActivityInfo
+import android.net.Uri
 import android.os.Bundle
+import android.util.SparseArray
 import androidx.appcompat.app.AppCompatActivity
+import at.huber.youtubeExtractor.VideoMeta
+import at.huber.youtubeExtractor.YouTubeExtractor
+import at.huber.youtubeExtractor.YtFile
 import com.example.app_movie.R
+import com.example.app_movie.databinding.ActivityVideoBinding
+import com.google.android.exoplayer2.MediaItem
 import com.google.android.exoplayer2.SimpleExoPlayer
 import com.google.android.exoplayer2.source.ProgressiveMediaSource
-import com.google.android.exoplayer2.upstream.DefaultHttpDataSourceFactory
-import kotlinx.android.synthetic.main.activity_video.*
+import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory
+import com.google.android.exoplayer2.util.Util
 
 
 class VideoActivity : AppCompatActivity() {
 
-    private var player: SimpleExoPlayer? = null
     private var playbackPosition = 0L
     private var currentWindow = 0
     private var playWhenReady = true
 
+    private val videoBinding: ActivityVideoBinding by lazy {
+        ActivityVideoBinding.inflate(layoutInflater)
+    }
+
+    private val videoKey: String by lazy {
+        intent.getStringExtra("key") ?: ""
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_video)
+        setContentView(videoBinding.root)
     }
 
+    @SuppressLint("StaticFieldLeak")
     private fun initializePlayer() {
-        if (player == null) {
-            player = SimpleExoPlayer.Builder(this).build()
-            playerView.player = player
-            playerView.controllerAutoShow = true
-            val defaultHttpDataSourceFactory =
-                DefaultHttpDataSourceFactory(getString(R.string.app_name))
-            val mediaSource = ProgressiveMediaSource.Factory(defaultHttpDataSourceFactory)
-                .createMediaSource(VideoModel.MP4_URI)
-            player!!.prepare(mediaSource)
-            player!!.seekTo(currentWindow, playbackPosition)
-            player!!.playWhenReady = playWhenReady
-        }
+        object : YouTubeExtractor(this) {
+            override fun onExtractionComplete(
+                ytFiles: SparseArray<YtFile>?,
+                vMeta: VideoMeta
+            ) {
+                if (ytFiles != null) {
+                    val player = SimpleExoPlayer.Builder(this@VideoActivity).build()
+                    videoBinding.playerView.player = player
+                    videoBinding.playerView.controllerAutoShow = true
+
+                    val mediaItem = MediaItem.fromUri(Uri.parse(ytFiles[22].url))
+                    val userAgent =
+                        Util.getUserAgent(this@VideoActivity, getString(R.string.app_name))
+                    val factory = DefaultDataSourceFactory(this@VideoActivity, userAgent)
+                    val progressiveMediaSource =
+                        ProgressiveMediaSource.Factory(factory).createMediaSource(mediaItem)
+
+                    player.setMediaSource(progressiveMediaSource)
+                    player.prepare()
+                    player.play()
+                }
+            }
+        }.extract("http://youtube.com/watch?v=$videoKey", true, true)
     }
 
     private fun releasePlayer() {
-        player?.let {
-            playbackPosition = it.currentPosition
-            currentWindow = it.currentWindowIndex
-            playWhenReady = it.playWhenReady
-            it.release()
-            player = null
-        }
+//        playbackPosition = player.currentPosition
+//        currentWindow = player.currentWindowIndex
+//        playWhenReady = player.playWhenReady
+//        player.release()
     }
 
 
