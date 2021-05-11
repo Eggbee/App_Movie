@@ -11,7 +11,10 @@
             android:id="@+id/recycler_category"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_margin="12dp"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-            tools:listitem="@layout/item_movie"
+            tools:listitem="@layout/item_movie_search"
             app:spanCount="2"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

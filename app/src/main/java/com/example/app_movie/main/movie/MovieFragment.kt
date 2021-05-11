@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.example.app_movie.R
 import com.example.app_movie.connect.MovieServiceUtil
 import com.example.app_movie.databinding.FragmentMovieBinding
 import com.example.app_movie.databinding.ItemPopularMovieInfoBinding
@@ -41,8 +42,17 @@ class MovieFragment : Fragment(), ClickEvent<Pair<ItemPopularMovieInfoBinding, M
         if (_binidng == null) {
             _binidng = FragmentMovieBinding.inflate(inflater, container, false)
             getPopularMovieInfo()
+            setPosterViewPager()
         }
         return binding?.root
+    }
+
+    private fun setPosterViewPager(){
+        val posterData = arrayListOf(
+            Triple(R.drawable.poster_1,"왓챠 최고 인기작","중경삼림 리마스터링, 해리포터 등\n지금 가장 많이 보는 작품"),
+            Triple(R.drawable.poster_2,"최고 인기 시리즈","강철부대, 약속의 네버랜드 2기 등")
+        )
+        binding?.viewMovie?.adapter = MovieViewPagerAdapter(posterData)
     }
 
     private fun getPopularMovieInfo() {
@@ -57,7 +67,6 @@ class MovieFragment : Fragment(), ClickEvent<Pair<ItemPopularMovieInfoBinding, M
                 data.add(Pair(title, it.results ?: arrayListOf()))
                 if (data.size > 3) binding?.viewMovieInfo?.adapter = MovieAdapter(data, this)
             }, {
-                Log.e("asdfError", it.toString())
             }).addTo(compositeDisposable)
     }
 

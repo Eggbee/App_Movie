@@ -20,10 +20,6 @@ import com.google.android.exoplayer2.util.Util
 
 class VideoActivity : AppCompatActivity() {
 
-    private var playbackPosition = 0L
-    private var currentWindow = 0
-    private var playWhenReady = true
-
     private val videoBinding: ActivityVideoBinding by lazy {
         ActivityVideoBinding.inflate(layoutInflater)
     }
