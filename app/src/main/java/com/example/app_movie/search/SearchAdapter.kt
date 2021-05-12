@@ -1,6 +1,5 @@
 package com.example.app_movie.search
 
-import android.graphics.Movie
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -8,8 +7,9 @@ import com.bumptech.glide.Glide
 import com.example.app_movie.R
 import com.example.app_movie.databinding.ItemMovieSearchBinding
 import com.example.app_movie.main.model.MovieModel
+import com.example.app_movie.util.ClickEvent
 
-class SearchAdapter() : RecyclerView.Adapter<SearchAdapter.ViewHolder>() {
+class SearchAdapter(val clickEvent: ClickEvent<MovieModel>) : RecyclerView.Adapter<SearchAdapter.ViewHolder>() {
 
     val data = arrayListOf<MovieModel>()
 
@@ -27,12 +27,12 @@ class SearchAdapter() : RecyclerView.Adapter<SearchAdapter.ViewHolder>() {
         return data.size
     }
 
-    fun addItem(value: ArrayList<MovieModel>){
+    fun addItem(value: ArrayList<MovieModel>) {
         data.addAll(value)
         notifyDataSetChanged()
     }
 
-    fun remove(){
+    fun remove() {
         data.clear()
         notifyDataSetChanged()
     }
@@ -41,6 +41,7 @@ class SearchAdapter() : RecyclerView.Adapter<SearchAdapter.ViewHolder>() {
         RecyclerView.ViewHolder(binding.root) {
         fun bind(value: MovieModel) {
             binding.textMovie.text = value.title
+            binding.root.setOnClickListener { clickEvent.onClick(value) }
             Glide.with(binding.root).load("https://image.tmdb.org/t/p/w342${value.posterPath}")
                 .error(R.drawable.icon)
                 .into(binding.icMovie)

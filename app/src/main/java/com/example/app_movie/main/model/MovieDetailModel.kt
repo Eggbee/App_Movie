@@ -12,5 +12,7 @@ data class MovieDetailModel(
     @SerializedName("overview")
     val overview : String,
     @SerializedName("release_date")
-    val releaseDate : String
+    val releaseDate : String,
+    @SerializedName("vote_average")
+    val voteAverage : Float? = null
 )

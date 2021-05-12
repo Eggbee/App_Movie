@@ -41,6 +41,7 @@ class InfoActivity : AppCompatActivity() {
             .map { Pair(it.first, it.second.results) }
             .subscribe({ value ->
                 infoViewBinding.textTitle.text = value.first.title
+                infoViewBinding.textVote.text = "예상 ★ ${value.first.voteAverage}"
                 infoViewBinding.textOverview.text = value.first.overview
                 Glide.with(infoViewBinding.root)
                     .load("https://image.tmdb.org/t/p/w342${value.first.posterPath}")

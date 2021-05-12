@@ -13,7 +13,8 @@
             android:layout_height="match_parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_margin="12dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="4dp"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             tools:listitem="@layout/item_movie_search"
             app:spanCount="2"/>
