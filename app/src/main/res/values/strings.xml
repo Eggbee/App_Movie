@@ -1,10 +1,8 @@
 <resources>
     <string name="app_name">엇챠플레이</string>
-    <string name="string_home">홈</string>
     <string name="string_login">이메일로 회원가입</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="string_login_first">모든 작품 무제한 감상,\n무료체험 시작하기</string>
     <string name="string_login_second">PC, 태블릿,폰,\n맥,Google 캐스트,TV,\n어디서나 최고의 화질로.</string>
     <string name="string_login_third">4억개의\n평가 데이터 기반,\n세계 최고의 추천엔진</string>
@@ -17,11 +15,6 @@
     <string name="string_signin_email">이메일 (example@gmail.com)</string>
     <string name="string_signin_password">비밀번호 (6자 이상)</string>
     <string name="stirng_signin">회원가입</string>
-    <string name="string_main_info1">무료 체험 시작하고</string>
-    <string name="string_main_info2">모든 작품, 무제한으로 감상하세요.</string>
     <string name="string_login_goto_signin">이미 왓챠 회원이신가요?</string>
     <string name="string_main_mypage">마이페이지</string>
-    <string name="string_main_logout">로그아웃</string>
-    <string name="id">w3Sm4xnRiqhOIpNHgOY0</string>
-    <string name="password">m4NT9Ij63u</string>
 </resources>
